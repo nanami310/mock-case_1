@@ -16,4 +16,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Product::class, 'likes'); // likesテーブルを使用
     }
+
+    public function soldProducts()
+    {
+        return $this->hasMany(Product::class); // 出品した商品を取得
+    }
+
+    public function purchasedProducts()
+    {
+        return $this->hasMany(PurchasedProduct::class); // 購入した商品を取得
+    }
 }

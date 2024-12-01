@@ -13,7 +13,7 @@
     @csrf
     <div class="form__group">
       <div class="form__group-title">
-        <span class="form__label--item">メールアドレス</span>
+        <span class="form__label--item">ユーザー名/メールアドレス</span>
       </div>
       <div class="form__group-content">
         <div class="form__input--text">
@@ -42,11 +42,11 @@
       </div>
     </div>
     <div class="form__button">
-      <button class="form__button-submit" type="submit">ログイン</button>
+      <button class="form__button-submit" type="submit">ログインする</button>
     </div>
   </form>
   <div class="register__link">
-    <a class="register__button-submit" href="/register">会員登録の方はこちら</a>
+    <a class="register__button-submit" href="/register">会員登録はこちら</a>
   </div>
 </div>
 @endsection

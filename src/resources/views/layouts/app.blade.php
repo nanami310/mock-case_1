@@ -16,20 +16,26 @@
     <div class="header__inner">
       <div class="header-utilities">
         <a class="header__logo" href="/">
-          Attendance Management
+          COACHTECH(画像)
         </a>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <nav>
           <ul class="header-nav">
             @if (Auth::check())
-            <li class="header-nav__item">
-              <a class="header-nav__link" href="/mypage">マイページ</a>
-            </li>
+            <form action="{{ route('products.index') }}" method="GET" class="d-inline">
+              <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
+              <button type="submit">検索</button>
+            </form>
             <li class="header-nav__item">
               <form class="form" action="/logout" method="post">
                 @csrf
                 <button class="header-nav__button">ログアウト</button>
               </form>
             </li>
+            <li class="header-nav__item">
+              <a class="header-nav__link" href="/mypage">マイページ</a>
+            </li>
+            <a href="{{ route('products.create') }}" class="btn btn-primary">出品</a>
             @endif
           </ul>
         </nav>

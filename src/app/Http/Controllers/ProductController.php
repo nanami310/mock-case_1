@@ -50,4 +50,11 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    public function show($id)
+    {
+        $product = Product::with(['comments.user'])->findOrFail($id);
+        $comments = $product->comments; // コメントを取得
+        return view('products.show', compact('product', 'comments'));
+    }
 }

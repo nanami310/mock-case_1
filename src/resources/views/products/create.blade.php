@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>商品出品</h1>
+    <h1>商品の出品</h1>
     <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <div>
-            <label for="image">商品画像:</label>
+            <label for="image">商品画像</label>
             <input type="file" name="image" id="image" >
             @error('image')
                 <div class="text-danger">{{ $message }}</div>
@@ -14,7 +14,8 @@
         </div>
 
         <div>
-            <label for="category">商品のカテゴリー:</label>
+            <h2>商品の詳細</h2>
+            <label for="category">カテゴリー</label>
             <select name="category[]" id="category" multiple >
                 <option value="ファッション">ファッション</option>
                 <option value="家電">家電</option>
@@ -37,7 +38,7 @@
         </div>
 
         <div>
-            <label for="condition">商品の状態:</label>
+            <label for="condition">商品の状態</label>
             <select name="condition" id="condition" >
                 <option value="良好">良好</option>
                 <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
@@ -50,7 +51,8 @@
         </div>
 
         <div>
-            <label for="name">商品名:</label>
+            <h2>商品名と説明</h2>
+            <label for="name">商品名</label>
             <input type="text" name="name" id="name" >
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -58,7 +60,7 @@
         </div>
 
         <div>
-            <label for="description">商品の説明:</label>
+            <label for="description">商品の説明</label>
             <textarea name="description" id="description" ></textarea>
             @error('description')
                 <div class="text-danger">{{ $message }}</div>
@@ -66,7 +68,7 @@
         </div>
 
         <div>
-            <label for="price">値段:</label>
+            <label for="price">販売価格</label>
             <input type="number" name="price" id="price" min="0">
             @error('price')
                 <div class="text-danger">{{ $message }}</div>
