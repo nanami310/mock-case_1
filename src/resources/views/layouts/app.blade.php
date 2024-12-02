@@ -16,7 +16,7 @@
     <div class="header__inner">
       <div class="header-utilities">
         <a class="header__logo" href="/">
-          COACHTECH(画像)
+          <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH Logo" style="width: 100px; height: auto;">
         </a>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <nav>

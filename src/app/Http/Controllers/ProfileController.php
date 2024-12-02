@@ -59,8 +59,10 @@ class ProfileController extends Controller
         }
 
         // ユーザー情報の更新
-        $user->update($request->only('name', 'postal_code', 'address', 'building_name'));
-    
-        return redirect()->route('mypage.index')->with('success', 'プロフィールが更新されました。');
+        $user = Auth::user();
+        $user->update($request->all());
+
+        // 商品一覧画面にリダイレクト
+        return redirect()->route('products.index');
     }
 }

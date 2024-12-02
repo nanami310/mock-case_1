@@ -25,10 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
 
-    // プロフィール編集画面のルート
-    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
-
     Route::post('/products/{product}/like', [LikeController::class, 'store'])->name('products.like');
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::get('/address/change', [AddressController::class, 'edit'])->name('address.change');
