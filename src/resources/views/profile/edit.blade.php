@@ -1,3 +1,5 @@
+<!-- プロフィール設定 -->
+
 @extends('layouts.app')
 
 @section('content')

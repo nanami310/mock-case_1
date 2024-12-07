@@ -14,10 +14,9 @@ class Product extends Model
     // Fillableプロパティの追加
     protected $fillable = ['name', 'image', 'is_sold', 'user_id'];
 
-    // likedByUsersリレーション
-    public function likedByUsers(): BelongsToMany
+    public function likedUsers()
     {
-        return $this->belongsToMany(User::class, 'likes');
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
 
     // purchasedProductsリレーション
@@ -40,5 +39,15 @@ class Product extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function likes_count()
+    {
+        return $this->likedUsers()->count();
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class); // Likeモデルとのリレーション
     }
 }

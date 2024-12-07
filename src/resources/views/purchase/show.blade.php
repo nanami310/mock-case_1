@@ -1,3 +1,5 @@
+<!-- 購入画面 -->
+
 @extends('layouts.app')
 
 @section('content')

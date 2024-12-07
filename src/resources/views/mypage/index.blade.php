@@ -1,3 +1,4 @@
+<!-- マイページ -->
 @extends('layouts.app')
 
 @section('content')
@@ -30,9 +31,10 @@
                 @if(count($soldProducts) > 0)
                     @foreach($soldProducts as $product)
                         <div class="card mb-3">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: auto;">
-                            <h5>{{ $product->name }}</h5>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">詳細</a>
+                            <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none; color: inherit;">
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: auto;">
+                                <h5>{{ $product->name }}</h5>
+                            </a>
                         </div>
                     @endforeach
                 @else
@@ -47,9 +49,10 @@
                 @if(count($purchasedProducts) > 0)
                     @foreach($purchasedProducts as $product)
                         <div class="card mb-3">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: auto;">
-                            <h5>{{ $product->name }}</h5>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">詳細</a>
+                            <a href="{{ route('products.show', $product->id) }}" style="text-decoration: none; color: inherit;">
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100px; height: auto;">
+                                <h5>{{ $product->name }}</h5>
+                            </a>
                         </div>
                     @endforeach
                 @else

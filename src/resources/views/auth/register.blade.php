@@ -1,3 +1,5 @@
+<!-- 新規登録 -->
+
 @extends('layouts.app')
 
 @section('css')

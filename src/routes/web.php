@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::post('/products/{product}/like', [LikeController::class, 'store'])->name('products.like');
+    Route::post('/products/{product}/like', [ProductController::class, 'like'])->name('products.like');
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::get('/address/change', [AddressController::class, 'edit'])->name('address.change');
     Route::post('/address/update', [AddressController::class, 'update'])->name('address.update');

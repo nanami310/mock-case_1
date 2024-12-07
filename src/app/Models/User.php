@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function likedProducts()
     {
-        return $this->belongsToMany(Product::class, 'likes'); // likesテーブルを使用
+        return $this->belongsToMany(Product::class, 'likes')->withTimestamps();
     }
 
     public function soldProducts()

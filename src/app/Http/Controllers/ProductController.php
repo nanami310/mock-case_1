@@ -12,12 +12,19 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $products = Product::when($search, function ($query) use ($search) {
-            return $query->where('name', 'like', '%' . $search . '%');
-        })->where('user_id', '!=', Auth::id()) // 自分が出品した商品は除外
-          ->get();
 
-        $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect(); // いいねした商品
+        // 現在のユーザーのIDを取得
+        $userId = Auth::id();
+
+        // 商品を取得し、自分が出品した商品は除外
+        $products = Product::when($search, function ($query) use ($search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->where('user_id', '!=', $userId) // 自分が出品した商品は除外
+            ->get();
+
+        // いいねした商品を取得（いいねを付けた商品のみ）
+        $likedProducts = Auth::user()->likedProducts; // いいねした商品を取得
 
         return view('products.index', compact('products', 'likedProducts', 'search'));
     }
@@ -56,5 +63,24 @@ class ProductController extends Controller
         $product = Product::with(['comments.user'])->findOrFail($id);
         $comments = $product->comments; // コメントを取得
         return view('products.show', compact('product', 'comments'));
+    }
+
+    public function like($id)
+    {
+        $product = Product::findOrFail($id);
+        $user = Auth::user();
+
+        // いいねを追加または削除する処理
+        if ($user->likedProducts()->where('product_id', $product->id)->exists()) {
+            $user->likedProducts()->detach($product->id); // すでにいいねしている場合は解除
+        } else {
+            $user->likedProducts()->attach($product->id); // いいねを追加
+        }
+
+        // いいね数を更新
+        $product->likes_count = $product->likedUsers()->count();
+        $product->save();
+
+        return back(); // 前のページに戻る
     }
 }

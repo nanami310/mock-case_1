@@ -2,26 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product; // Productモデルをインポート
-use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User; // Userモデルをインポート
+use App\Models\User;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
     public function index()
     {
         return redirect()->route('products.index'); // 商品一覧画面にリダイレクト
+        $user = Auth::user();
+
+        // 出品した商品を取得
+        $soldProducts = $user->soldProducts;
+
+        // 自分が出品した商品を除いた全商品を取得
+        $products = Product::where('user_id', '!=', $user->id)->get();
+
+        // いいねした商品を取得
+        $likedProducts = $user->likedProducts;
+
+        return view('your_view_name', compact('products', 'soldProducts', 'likedProducts'));
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        // バリデーション処理
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        // バリデーション済みデータを取得
+        $validatedData = $request->validated();
 
         // ユーザーを作成
         $user = User::create([
@@ -37,21 +46,16 @@ class AuthController extends Controller
         return redirect()->route('profile.edit');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        // バリデーション処理
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+        // バリデーション済みデータを取得
+        $credentials = $request->validated();
 
         // ログイン処理
         if (Auth::attempt($credentials)) {
-            // ログイン成功時に商品一覧画面にリダイレクト
             return redirect()->route('products.index');
         }
 
-        // ログイン失敗時の処理
         return back()->withErrors([
             'email' => '認証に失敗しました。',
         ]);
