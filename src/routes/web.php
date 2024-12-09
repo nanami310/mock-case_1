@@ -24,8 +24,6 @@ Route::middleware('auth')->group(function () {
 
     // 送付先住所変更画面
     Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address.change');
-    // 送付先住所更新処理
-    Route::post('/purchase/address/{item_id}', [AddressController::class, 'update'])->name('address.update');
 
     // 商品出品画面
     Route::get('/sell', [ProductController::class, 'create'])->name('products.create');
