@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -29,40 +28,40 @@ class ProfileController extends Controller
         $user = Auth::user();
         $soldProducts = $user->soldProducts ?? []; // 出品した商品
 
-
         return view('mypage.index', compact('user', 'soldProducts'));
     }
+
     public function edit()
     {
         $user = Auth::user();
         return view('profile.edit', compact('user'));
     }
-
     public function update(Request $request)
-    {
-        $user = Auth::user();
-    
-        // バリデーション
-        $request->validate([
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:10',
-            'address' => 'required|string|max:255',
-            'building_name' => 'nullable|string|max:255',
-        ]);
+{
+    $user = Auth::user();
 
-        // プロフィール画像の処理
-        if ($request->hasFile('profile_image')) {
-            // 画像を保存し、パスを取得
-            $path = $request->file('profile_image')->store('profile_images', 'public');
-            $user->profile_image = $path; // 画像パスをユーザーに保存
+    // バリデーション
+    $validatedData = $request->validate([
+        'profile_image' => 'nullable|image|max:2048',
+        'name' => 'required|string|max:255',
+        'postal_code' => 'required|string|max:10',
+        'address' => 'required|string|max:255',
+        'building_name' => 'nullable|string|max:255',
+    ]);
+
+    // プロフィール画像の保存（オプション）
+    if ($request->hasFile('profile_image')) {
+        // 古い画像の削除
+        if ($user->profile_image) {
+            Storage::disk('public')->delete($user->profile_image);
         }
-
-        // ユーザー情報の更新
-        $user = Auth::user();
-        $user->update($request->all());
-
-        // 商品一覧画面にリダイレクト
-        return redirect()->route('products.index');
+        $path = $request->file('profile_image')->store('profile_images', 'public');
+        $validatedData['profile_image'] = $path;
     }
+
+    // ユーザー情報の更新
+    $user->update($validatedData);
+
+    return redirect()->route('profile.edit')->with('success', 'プロフィールが更新されました。');
+}
 }
