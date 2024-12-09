@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
 
     // 送付先住所変更画面
-    Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address.change');
+    Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address.change')->where('userList', '[0-9]+');
 
     // 商品出品画面
     Route::get('/sell', [ProductController::class, 'create'])->name('products.create');
