@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function () {
     
     // プロフィール編集画面
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::match(['put', 'post'], '/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
+
 
     // プロフィール画面_購入した商品一覧
     Route::get('/mypage?page=buy', [ProfileController::class, 'showPurchased'])->name('mypage.purchased');

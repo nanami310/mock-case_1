@@ -51,16 +51,12 @@ class ProfileController extends Controller
 
     // プロフィール画像の保存（オプション）
     if ($request->hasFile('profile_image')) {
-        // 古い画像の削除
-        if ($user->profile_image) {
-            Storage::disk('public')->delete($user->profile_image);
-        }
-        $path = $request->file('profile_image')->store('profile_images', 'public');
-        $validatedData['profile_image'] = $path;
-    }
+    $path = $request->file('profile_image')->store('profile_images', 'public');
+    $user->profile_image = $path;
+}
 
     // ユーザー情報の更新
-    $user->update($validatedData);
+    $user->update($request->all());
 
     return redirect()->route('profile.edit')->with('success', 'プロフィールが更新されました。');
 }
