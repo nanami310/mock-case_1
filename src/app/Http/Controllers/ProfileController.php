@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {   
@@ -39,8 +40,6 @@ class ProfileController extends Controller
     public function update(Request $request)
 {
     $user = Auth::user();
-
-    // バリデーション
     $validatedData = $request->validate([
         'profile_image' => 'nullable|image|max:2048',
         'name' => 'required|string|max:255',
@@ -49,14 +48,15 @@ class ProfileController extends Controller
         'building_name' => 'nullable|string|max:255',
     ]);
 
-    // プロフィール画像の保存（オプション）
     if ($request->hasFile('profile_image')) {
-    $path = $request->file('profile_image')->store('profile_images', 'public');
-    $user->profile_image = $path;
-}
+        if ($user->profile_image) {
+            Storage::disk('public')->delete($user->profile_image);
+        }
+        $path = $request->file('profile_image')->store('profile_images', 'public');
+        $validatedData['profile_image'] = $path;
+    }
 
-    // ユーザー情報の更新
-    $user->update($request->all());
+    $user->update($validatedData);
 
     return redirect()->route('profile.edit')->with('success', 'プロフィールが更新されました。');
 }
