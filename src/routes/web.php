@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function () {
     // ルートをProductControllerのindexメソッドに変更
@@ -15,4 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::get('/sell', [ProductController::class, 'create'])->name('products.create'); // 出品画面
     Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // 商品登録
+
+    Route::get('/mypage', [UserController::class, 'showMypage'])->name('mypage');
+    Route::get('/mypage/edit', [UserController::class, 'editProfile'])->name('editProfile');
 });

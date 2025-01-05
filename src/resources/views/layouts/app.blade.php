@@ -29,6 +29,11 @@
                 @csrf
                 <button class="header-nav__button">ログアウト</button>
               </form>
+              <a href="{{ route('products.create') }}" class="btn btn-primary">出品</a>
+              <form action="{{ route('products.index') }}" method="GET" class="d-inline">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
+                <button type="submit">検索</button>
+              </form>
             </li>
             @endif
           </ul>

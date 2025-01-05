@@ -4,20 +4,6 @@
 <div class="container">
     <header class="d-flex justify-content-between align-items-center mb-4">
         <h1>商品一覧</h1>
-        <div>
-            <form action="{{ route('products.index') }}" method="GET" class="d-inline">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
-                <button type="submit">検索</button>
-            </form>
-            <a href="{{ route('products.create') }}" class="btn btn-primary">出品</a>
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-danger">ログアウト</button>
-            </form>
-            @if(Auth::check())
-                <a href="/mypage" class="btn btn-secondary">マイページ</a>
-            @endif
-        </div>
     </header>
 
     <ul class="nav nav-tabs mb-3">
