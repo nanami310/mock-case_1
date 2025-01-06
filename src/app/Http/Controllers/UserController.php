@@ -22,4 +22,20 @@ class UserController extends Controller
         $user = Auth::user();
         return view('editProfile', compact('user'));
     }
+
+    public function showProducts()
+{
+    $user = Auth::user();
+
+    // 自分が出品した商品を取得
+    $myProducts = $user->soldProducts()->pluck('id')->toArray();
+
+    // おすすめ商品（自分が出品していない商品）
+    $products = Product::whereNotIn('id', $myProducts)->get();
+
+    // ユーザーが「いいね」した商品を取得
+    $likedProducts = $user->likedProducts;
+
+    return view('products.index', compact('products', 'likedProducts'));
+}
 }

@@ -15,4 +15,19 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
+public function likes()
+{
+    return $this->belongsToMany(User::class, 'likes'); // 'likes'はpivotテーブル名
+}
+
+public function likeCount()
+{
+    return $this->likes()->count();
+}
 }

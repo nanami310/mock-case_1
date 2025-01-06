@@ -19,4 +19,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/mypage', [UserController::class, 'showMypage'])->name('mypage');
     Route::get('/mypage/edit', [UserController::class, 'editProfile'])->name('editProfile');
+
+    Route::get('/item/{id}', [ProductController::class, 'show'])->name('item.show');
+    Route::post('/products/{item_id}/comments', [ProductController::class, 'storeComment'])->name('comments.store');
+
+    Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like');
+    Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
+    Route::post('/products/{id}/unlike', [ProductController::class, 'unlike'])->name('products.unlike');
 });
