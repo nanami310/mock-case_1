@@ -38,4 +38,14 @@ class UserController extends Controller
 
     return view('products.index', compact('products', 'likedProducts'));
 }
+
+public function myPage()
+{
+    $user = Auth::user();
+    // 出品した商品を取得（コレクションとして）
+    $soldProducts = $user->soldProducts; // ここはリレーションを直接使用
+    $purchasedProducts = $user->purchasedProducts; 
+
+    return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));
+}
 }

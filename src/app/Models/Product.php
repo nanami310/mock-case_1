@@ -30,4 +30,10 @@ public function likeCount()
 {
     return $this->likes()->count();
 }
+
+public function users()
+    {
+        return $this->belongsToMany(User::class, 'purchases');
+    }
+
 }

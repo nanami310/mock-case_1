@@ -7,15 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasFactory;
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 
-    // Fillableプロパティを追加
-    protected $fillable = ['name', 'email', 'password']; // 必要に応じて他の属性も追加
+    public function purchasedProducts()
+    {
+        return $this->belongsToMany(Product::class, 'purchases');
+    }
+
+    public function soldProducts()
+    {
+        return $this->hasMany(Product::class, 'user_id'); // ここで出品した商品を取得
+    }
 
     public function likedProducts()
     {
-        return $this->belongsToMany(Product::class, 'likes'); // likesテーブルを使用
+        return $this->belongsToMany(Product::class, 'likes');
     }
-
-    
 }
