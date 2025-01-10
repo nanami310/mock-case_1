@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('postal_code')->nullable(); // postal_codeカラムを追加
+            $table->string('address')->nullable(); // addressカラムも追加
+            $table->string('building_name')->nullable(); // building_nameカラムも追加
             $table->timestamps();
         });
     }

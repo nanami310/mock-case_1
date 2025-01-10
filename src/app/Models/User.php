@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
+    use HasFactory; // HasFactoryトレイトを追加
+
+    // マスアサインメントを許可するプロパティ
+    protected $fillable = [
+        'name',           // ユーザー名
+        'email',          // メールアドレス
+        'password',       // パスワード
+        'postal_code',    // 郵便番号
+        'address',        // 住所
+        'building_name',  // 建物名
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 Route::middleware('auth')->group(function () {
     // ルートをProductControllerのindexメソッドに変更
@@ -29,5 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/products/{id}/unlike', [ProductController::class, 'unlike'])->name('products.unlike');
     Route::get('/products/sold', [ProductController::class, 'soldProducts'])->name('products.sold');
 
-    
+    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('editProfile');
+Route::post('/update-profile', [ProfileController::class, 'update'])->name('updateProfile');
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+// プロフィール編集ページのルート
+Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+// プロフィール更新のルート
+Route::post('/mypage', [ProfileController::class, 'update'])->name('updateProfile');
+
+// マイページのルート
+Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
 });
