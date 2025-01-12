@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\AddressController;
 
 Route::middleware('auth')->group(function () {
     // ルートをProductControllerのindexメソッドに変更
@@ -43,4 +45,8 @@ Route::post('/mypage', [ProfileController::class, 'update'])->name('updateProfil
 
 // マイページのルート
 Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
+
+Route::get('/purchase/create/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
+Route::get('/address/change', [AddressController::class, 'edit'])->name('address.change');
+Route::post('/address/update', [AddressController::class, 'update'])->name('address.update');
 });

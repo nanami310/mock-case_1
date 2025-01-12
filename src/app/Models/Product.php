@@ -35,5 +35,9 @@ public function users()
     {
         return $this->belongsToMany(User::class, 'purchases');
     }
+    public function category()
+{
+    return $this->belongsTo(Category::class);
+}
 
 }
