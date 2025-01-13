@@ -74,7 +74,8 @@
 
 <div class="mypage">
     <div class="profile">
-        <img src="{{ $user->profile_image }}" alt="プロフィール画像" class="profile__image">
+        {{ dd($user->profile_image) }}
+        <img src="{{ asset('storage/' . $user->profile_image) }}" alt="プロフィール画像" class="profile__image">
         <h2 class="profile__name">{{ $user->name }}</h2>
     </div>
 

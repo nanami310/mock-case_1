@@ -19,7 +19,7 @@
         <p id="postal_code">{{ $user->postal_code }}</p>
         <p id="address">{{ $user->address }}</p>
         <p id="building_name">{{ $user->building_name }}</p>
-        <a href="{{ route('address.change') }}" class="btn btn-secondary">配送先変更</a>
+        <a href="{{ route('address.change', $product->id) }}" class="btn btn-secondary">配送先変更</a>
         
         <h3>小計</h3>
         <p>商品代金: <span id="subtotal-price">{{ $product->price }}</span>円</p>

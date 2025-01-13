@@ -17,6 +17,7 @@ class User extends Authenticatable
         'postal_code',    // 郵便番号
         'address',        // 住所
         'building_name',  // 建物名
+        'profile_image',
     ];
 
     public function products()

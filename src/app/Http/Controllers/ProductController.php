@@ -57,7 +57,9 @@ public function show($id)
     $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect();
     $likeCount = $product->likeCount(); // いいね数を取得
 
-    return view('products.show', compact('product', 'likedProducts', 'likeCount'));
+    $categories = json_decode($product->category);
+
+    return view('products.show', compact('product', 'likedProducts', 'likeCount', 'categories'));
 }
 
 public function storeComment(Request $request, $item_id)

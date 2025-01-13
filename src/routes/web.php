@@ -9,6 +9,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AddressController;
 
 Route::middleware('auth')->group(function () {
+
     // ルートをProductControllerのindexメソッドに変更
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
     
@@ -47,6 +48,8 @@ Route::post('/mypage', [ProfileController::class, 'update'])->name('updateProfil
 Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
 
 Route::get('/purchase/create/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
-Route::get('/address/change', [AddressController::class, 'edit'])->name('address.change');
-Route::post('/address/update', [AddressController::class, 'update'])->name('address.update');
+Route::post('/address/update/{product}', [AddressController::class, 'update'])->name('address.update');
+Route::get('/address/change/{product}', [AddressController::class, 'edit'])->name('address.change');
+
+
 });

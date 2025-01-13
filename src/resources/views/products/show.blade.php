@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
     <h1>{{ $product->name }}</h1>
-    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
+    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
     <p>{{ $product->description }}</p>
     <p>価格: {{ $product->price }}円</p>
+     <p class="card-text">カテゴリー: {{ implode(', ', $categories) }}</p>
     <p><strong>商品の状態:</strong> {{ $product->condition }} <!-- 商品の状態を表示 --></p>
     
     @if($product->is_sold)

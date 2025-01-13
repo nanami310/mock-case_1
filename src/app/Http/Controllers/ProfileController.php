@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -13,16 +14,8 @@ class ProfileController extends Controller
     return view('editProfile', compact('user')); // editProfileを指定
 }
 
-    public function update(Request $request)
+    public function update(UpdateProfileRequest $request)
     {
-        // バリデーション
-        $request->validate([
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'name' => 'required|string|max:255',
-            'postal_code' => 'required|string|max:10',
-            'address' => 'required|string|max:255',
-            'building_name' => 'nullable|string|max:255',
-        ]);
 
         // ユーザー情報の更新
         $user = Auth::user();
