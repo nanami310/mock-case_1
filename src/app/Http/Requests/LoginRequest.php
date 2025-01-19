@@ -8,25 +8,23 @@ class LoginRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; // 認可の設定
+        return true;
     }
 
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|min:6', // 必要に応じてルールを調整
+            'email' => 'required|string|email',
+            'password' => 'required|string',
         ];
     }
 
     public function messages()
     {
         return [
-            'email.required' => 'メールアドレスは必ず指定してください。',
+            'email.required' => 'メールアドレスは必須です。',
             'email.email' => '有効なメールアドレスを入力してください。',
-            'password.required' => 'パスワードは必ず指定してください。',
-            'password.min' => 'パスワードは少なくとも6文字以上である必要があります。',
+            'password.required' => 'パスワードは必須です。',
         ];
     }
 }
-

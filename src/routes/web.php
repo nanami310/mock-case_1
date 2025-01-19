@@ -8,7 +8,22 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\AddressController;
 
-Route::middleware('auth')->group(function () {
+Route::group([], function () {
+
+    // 新規登録画面
+    Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
+    // 新規登録処理
+    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+    // ログイン画面
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    // ログイン処理
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+
+    // ログアウト処理
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    
 
     // ルートをProductControllerのindexメソッドに変更
     Route::get('/', [ProductController::class, 'index'])->name('products.index');

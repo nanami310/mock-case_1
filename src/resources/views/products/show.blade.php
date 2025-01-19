@@ -61,7 +61,6 @@
     </div>
     @endif
 
-    <h3>コメント</h3>
 <div class="comment-container">
     <div class="bubble-icon">
         💬 <!-- 吹き出しのマーク -->
