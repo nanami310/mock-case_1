@@ -5,7 +5,7 @@
     <h1>プロフィールを編集</h1>
     
     <div class="profile">
-        <img src="{{ asset($user->profile_image) }}" alt="プロフィール画像" class="profile__image">
+        <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
         <h2 class="profile__name">{{ $user->name }}</h2>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="profile_image">プロフィール画像</label>
             <input type="file" name="profile_image" class="form-control" id="profile_image">
-            <small class="form-text text-muted">現在の画像: <img src="{{ asset($user->profile_image) }}" alt="現在のプロフィール画像" style="width: 100px;"></small>
+            <small class="form-text text-muted">現在の画像: <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="現在のプロフィール画像" style="width: 100px;"></small>
             @error('profile_image')
                 <div class="text-danger">{{ $message }}</div>
             @enderror

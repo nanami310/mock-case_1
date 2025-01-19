@@ -5,7 +5,7 @@
     <h1>購入手続き</h1>
     
     <div>
-        <img src="{{ $product->image }}" alt="{{ $product->name }}">
+        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
         <h2>{{ $product->name }}</h2>
         <p>値段: <span id="price">{{ $product->price }}</span>円</p>
         

@@ -74,8 +74,7 @@
 
 <div class="mypage">
     <div class="profile">
-        {{ dd($user->profile_image) }}
-        <img src="{{ asset('storage/' . $user->profile_image) }}" alt="プロフィール画像" class="profile__image">
+        <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
         <h2 class="profile__name">{{ $user->name }}</h2>
     </div>
 
@@ -94,7 +93,8 @@
         @if($soldProducts->isNotEmpty())
             @foreach($soldProducts as $product)
                 <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="card-img-top">
+                  
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         @if($product->is_sold)
@@ -111,7 +111,7 @@
         @if(count($purchasedProducts) > 0)
             @foreach($purchasedProducts as $product)
                 <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="card-img-top">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         @if($product->is_sold)

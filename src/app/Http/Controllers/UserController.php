@@ -14,6 +14,7 @@ class UserController extends Controller
         $soldProducts = $user->soldProducts ?? []; // 出品した商品
         $purchasedProducts = $user->purchasedProducts ?? []; // 購入した商品
 
+
         return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));
     }
 

@@ -64,7 +64,7 @@
         <div id="recommended" class="tab-pane show active">
             @foreach($products as $product)
                 <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
-                    <img src="{{ $product->image }}" alt="{{ $product->name }}" class="card-img-top">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         @if($product->is_sold)
@@ -79,7 +79,7 @@
             <div id="mylist" class="tab-pane">
                 @foreach($likedProducts as $likedProduct)
                     <a href="{{ route('item.show', $likedProduct->id) }}" class="card mb-3 text-decoration-none">
-                        <img src="{{ $likedProduct->image }}" alt="{{ $likedProduct->name }}" class="card-img-top">
+                        <img src="{{ asset('storage/' . $likedProduct->image) }}" alt="{{ $likedProduct->name }}" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ $likedProduct->name }}</h5>
                             @if($likedProduct->is_sold)
