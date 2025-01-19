@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>送付先住所を変更</h1>
+  <h1>住所の変更</h1>
 
   
   <form action="{{ url('/address/update/' . $productId) }}" method="POST">

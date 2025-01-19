@@ -76,6 +76,7 @@
     <div class="profile">
         <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
         <h2 class="profile__name">{{ $user->name }}</h2>
+        <a href="{{ route('editProfile') }}" class="edit-profile-button">プロフィールを編集</a>
     </div>
 
     <div class="container">
@@ -89,45 +90,43 @@
         </ul>
 
         <div class="tab-content">
-    <div id="soldProducts" class="tab-pane show active">
-        @if($soldProducts->isNotEmpty())
-            @foreach($soldProducts as $product)
-                <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
+            <div id="soldProducts" class="tab-pane show active">
+                @if($soldProducts->isNotEmpty())
+                    @foreach($soldProducts as $product)
+                        <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
                   
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        @if($product->is_sold)
-                            <span class="badge bg-danger">Sold</span>
-                        @endif
-                    </div>
-                </a>
-            @endforeach
-        @else
-            <p>出品した商品はありません。</p>
-        @endif
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                @if($product->is_sold)
+                                    <span class="badge bg-danger">Sold</span>
+                                @endif
+                            </div>
+                        </a>
+                    @endforeach
+                @else
+                    <p>出品した商品はありません。</p>
+                @endif
+            </div>
+            <div id="purchasedProducts" class="tab-pane">
+                @if(count($purchasedProducts) > 0)
+                    @foreach($purchasedProducts as $product)
+                        <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $product->name }}</h5>
+                                @if($product->is_sold)
+                                    <span class="badge bg-danger">Sold</span>
+                                @endif
+                            </div>
+                        </a>
+                    @endforeach
+                @else
+                    <p>購入した商品はありません。</p>
+                @endif
+            </div>
+        </div>
     </div>
-    <div id="purchasedProducts" class="tab-pane">
-        @if(count($purchasedProducts) > 0)
-            @foreach($purchasedProducts as $product)
-                <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        @if($product->is_sold)
-                            <span class="badge bg-danger">Sold</span>
-                        @endif
-                    </div>
-                </a>
-            @endforeach
-        @else
-            <p>購入した商品はありません。</p>
-        @endif
-    </div>
-</div>
-    </div>
-
-    <a href="{{ route('editProfile') }}" class="edit-profile-button">プロフィールを編集</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

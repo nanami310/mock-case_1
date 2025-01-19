@@ -16,24 +16,24 @@
     <div class="header__inner">
       <div class="header-utilities">
         <a class="header__logo" href="/">
-          Attendance Management
+          <img src="{{ asset('storage/images/logo.svg') }}" alt="Attendance Management Logo" class="logo-img">
         </a>
         <nav>
           <ul class="header-nav">
             @if (Auth::check())
+            <form action="{{ route('products.index') }}" method="GET" class="d-inline">
+              <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
+              <button type="submit">検索</button>
+            </form>
+            <form class="form" action="/logout" method="post">
+              @csrf
+              <button class="header-nav__button">ログアウト</button>
+            </form>
             <li class="header-nav__item">
               <a class="header-nav__link" href="/mypage">マイページ</a>
             </li>
             <li class="header-nav__item">
-              <form class="form" action="/logout" method="post">
-                @csrf
-                <button class="header-nav__button">ログアウト</button>
-              </form>
               <a href="{{ route('products.create') }}" class="btn btn-primary">出品</a>
-              <form action="{{ route('products.index') }}" method="GET" class="d-inline">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="商品名で検索">
-                <button type="submit">検索</button>
-              </form>
             </li>
             @endif
           </ul>

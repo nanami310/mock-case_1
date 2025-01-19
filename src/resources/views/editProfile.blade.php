@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.form-label {
+    display: block; /* ラベルをブロック要素として表示 */
+    margin-bottom: 0.5rem; /* 下の余白を調整 */
+}
+</style>
+
+
 <div class="container">
-    <h1>プロフィールを編集</h1>
+    <h1>プロフィール設定</h1>
     
     <div class="profile">
         <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
@@ -12,9 +20,20 @@
     <form action="{{ url('/mypage') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="profile_image">プロフィール画像</label>
-            <input type="file" name="profile_image" class="form-control" id="profile_image">
-            <small class="form-text text-muted">現在の画像: <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="現在のプロフィール画像" style="width: 100px;"></small>
+            <label for="profile_image" class="form-label">画像を選択する</label>
+            <input type="file" name="profile_image" class="form-control" id="profile_image" style="display: none;">
+            <script>
+                function updateLabel() {
+                    const input = document.getElementById('profile_image');
+                    const label = document.getElementById('file-label');
+    
+                    if (input.files.length > 0) {
+                        label.textContent = '画像が選択されました'; // 選択された場合のテキスト
+                    } else {
+                        label.textContent = '画像を選択する'; // 何も選択されていない場合のテキスト
+                    }
+                }
+            </script>
             @error('profile_image')
                 <div class="text-danger">{{ $message }}</div>
             @enderror

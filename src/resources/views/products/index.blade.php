@@ -45,9 +45,6 @@
 </style>
 
 <div class="container">
-    <header class="d-flex justify-content-between align-items-center mb-4">
-        <h1>商品一覧</h1>
-    </header>
 
     <ul class="nav mb-3">
         <li class="nav-item">
