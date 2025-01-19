@@ -23,13 +23,13 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'お名前は必須です。',
-            'email.required' => 'メールアドレスは必須です。',
-            'email.email' => '有効なメールアドレスを入力してください。',
-            'email.unique' => 'このメールアドレスはすでに登録されています。',
-            'password.required' => 'パスワードは必須です。',
-            'password.min' => 'パスワードは8文字以上である必要があります。',
-            'password.confirmed' => 'パスワードが一致しません。',
+            'name.required' => 'お名前を入力してください',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => '有効なメールアドレスを入力してください',
+            'email.unique' => 'このメールアドレスはすでに登録されています',
+            'password.required' => 'パスワードを入力してください',
+            'password.min' => 'パスワードは8文字以上で入力してください',
+            'password.confirmed' => 'パスワードと一致しません',
         ];
     }
 }

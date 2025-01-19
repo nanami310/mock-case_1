@@ -9,10 +9,10 @@ use App\Http\Requests\UpdateProfileRequest;
 class ProfileController extends Controller
 {
     public function edit()
-{
-    $user = Auth::user();
-    return view('editProfile', compact('user')); // editProfileを指定
-}
+    {
+        $user = Auth::user();
+        return view('editProfile', compact('user')); // editProfileを指定
+    }
 
     public function update(UpdateProfileRequest $request)
     {
@@ -35,13 +35,13 @@ class ProfileController extends Controller
     }
 
     public function show()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
     
-    // 売れた商品を取得するロジックを追加
-    $soldProducts = $user->soldProducts; // ユーザーの売れた商品を取得
-    $purchasedProducts = $user->purchasedProducts; // ユーザーの購入した商品を取得
+        // 売れた商品を取得するロジックを追加
+        $soldProducts = $user->soldProducts; // ユーザーの売れた商品を取得
+        $purchasedProducts = $user->purchasedProducts; // ユーザーの購入した商品を取得
 
-    return view('mypage', compact('user', 'soldProducts', 'purchasedProducts')); // 変数を渡す
-}
+        return view('mypage', compact('user', 'soldProducts', 'purchasedProducts')); // 変数を渡す
+    }
 }

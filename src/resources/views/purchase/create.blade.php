@@ -20,8 +20,6 @@
         <p id="address">{{ $user->address }}</p>
         <p id="building_name">{{ $user->building_name }}</p>
         
-
-
         <p>商品代金 ￥<span id="total">{{ number_format($product->price) }}</span></p>
         <p>支払い方法 <span id="subtotal-payment">選択してください</span></p>
         
@@ -38,10 +36,29 @@
         subtotalPayment.textContent = this.options[this.selectedIndex].text;
         // 小計の計算（支払方法によって変わる場合はここにロジックを追加）
     });
+</script>
 
-    document.getElementById('purchase-button').addEventListener('click', function() {
-        // Stripeの決済画面に接続するロジックをここに追加
-        window.location.href = '/stripe/checkout'; // 例: StripeのチェックアウトURL
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ env('STRIPE_KEY') }}');
+
+    document.getElementById('purchase-button').addEventListener('click', async function() {
+        const response = await fetch('/stripe/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ price: {{ $product->price }} })
+        });
+
+        const session = await response.json();
+        console.log(session); 
+        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+        if (result.error) {
+            alert(result.error.message);
+        }
     });
 </script>
 @endsection

@@ -19,17 +19,20 @@ class AuthController extends Controller
     }
 
     public function register(RegisterRequest $request)
-{
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+    {
+        // ユーザーの作成
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-    Auth::login($user); // 登録後に自動的にログイン
+        // 自動ログインを行わない
+        // Auth::login($user); // この行をコメントアウトまたは削除
 
-    return redirect()->route('editProfile'); // プロフィール編集画面にリダイレクト
-}
+        // ログイン画面にリダイレクト
+        return redirect()->route('login')->with('success', '登録が完了しました。ログインしてください。');
+    }
 
     public function showLoginForm()
     {
@@ -37,15 +40,15 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request)
-{
-    if (Auth::attempt($request->only('email', 'password'))) {
-        return redirect()->route('products.index'); // 商品一覧ページにリダイレクト
-    }
+    {
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return redirect()->route('products.index'); // 商品一覧ページにリダイレクト
+        }
 
-    return back()->withErrors([
-        'email' => 'メールアドレスまたはパスワードが正しくありません。',
-    ]);
-}
+        return back()->withErrors([
+            'email' => 'メールアドレスまたはパスワードが正しくありません。',
+        ]);
+    }
 
     public function logout()
     {

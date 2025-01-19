@@ -25,28 +25,28 @@ class UserController extends Controller
     }
 
     public function showProducts()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    // 自分が出品した商品を取得
-    $myProducts = $user->soldProducts()->pluck('id')->toArray();
+        // 自分が出品した商品を取得
+        $myProducts = $user->soldProducts()->pluck('id')->toArray();
 
-    // おすすめ商品（自分が出品していない商品）
-    $products = Product::whereNotIn('id', $myProducts)->get();
+        // おすすめ商品（自分が出品していない商品）
+        $products = Product::whereNotIn('id', $myProducts)->get();
 
-    // ユーザーが「いいね」した商品を取得
-    $likedProducts = $user->likedProducts;
+        // ユーザーが「いいね」した商品を取得
+        $likedProducts = $user->likedProducts;
 
-    return view('products.index', compact('products', 'likedProducts'));
-}
+        return view('products.index', compact('products', 'likedProducts'));
+    }
 
-public function myPage()
-{
-    $user = Auth::user();
-    // 出品した商品を取得（コレクションとして）
-    $soldProducts = $user->soldProducts; // ここはリレーションを直接使用
-    $purchasedProducts = $user->purchasedProducts; 
+    public function myPage()
+    {
+        $user = Auth::user();
+        // 出品した商品を取得（コレクションとして）
+        $soldProducts = $user->soldProducts; // ここはリレーションを直接使用
+        $purchasedProducts = $user->purchasedProducts; 
 
-    return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));
-}
+        return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));
+    }
 }

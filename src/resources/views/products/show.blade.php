@@ -61,16 +61,15 @@
     </div>
     @endif
 
-<div class="comment-container">
-    <div class="bubble-icon">
-        💬 <!-- 吹き出しのマーク -->
+    <div class="comment-container">
+        <div class="bubble-icon">
+            💬 <!-- 吹き出しのマーク -->
+        </div>
+        <div class="comment-count">
+            {{ $product->comments->count() }} <!-- コメント数を表示 -->
+        </div>
     </div>
-    <div class="comment-count">
-        {{ $product->comments->count() }} <!-- コメント数を表示 -->
-    </div>
-</div>
 
-    
     <a href="{{ route('purchase.create', ['product' => $product->id]) }}" class="btn btn-primary">購入手続きへ</a>
 
     <h3>商品説明</h3>
@@ -92,26 +91,26 @@
     @endif
 
     <h3>コメント ({{ $product->comments->count() }})</h3> <!-- コメント数を表示 -->
-<ul>
-    @foreach($product->comments as $comment)
-        <li>
-            <img src="{{ asset('storage/profile_images/' . basename($comment->user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
-            <strong>{{ $comment->user->name }}</strong> - {{ $comment->content }}
-        </li>
-    @endforeach
-</ul>
+    <ul>
+        @foreach($product->comments as $comment)
+            <li>
+                <img src="{{ asset('storage/profile_images/' . basename($comment->user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
+                <strong>{{ $comment->user->name }}</strong> - {{ $comment->content }}
+            </li>
+        @endforeach
+    </ul>
 
 
 
     <!-- コメント投稿フォーム -->
-     <form action="{{ route('comments.store', $product->id) }}" method="POST">
-    @csrf
-    <div class="mb-3">
-        <label for="comment" class="form-label">商品へのコメント</label>
-        <textarea class="form-control" id="comment" name="comment" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">コメントを送信する</button>
-</form>
+    <form action="{{ route('comments.store', $product->id) }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="comment" class="form-label">商品へのコメント</label>
+            <textarea class="form-control" id="comment" name="comment" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">コメントを送信する</button>
+    </form>
 </div>
 @endsection
 

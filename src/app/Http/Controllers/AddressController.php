@@ -14,7 +14,7 @@ class AddressController extends Controller
         $user = auth()->user(); // 認証済みのユーザー情報を取得
         $product = Product::findOrFail($productId); // 商品を取得
 
-    return view('address.change', compact('user', 'product', 'productId')); // ビューにユーザー情報と商品情報を渡す
+        return view('address.change', compact('user', 'product', 'productId')); // ビューにユーザー情報と商品情報を渡す
         
     }
 

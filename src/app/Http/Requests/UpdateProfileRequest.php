@@ -25,19 +25,19 @@ class UpdateProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'profile_image.image' => 'プロフィール画像は画像ファイルでなければなりません。',
-            'profile_image.max' => 'プロフィール画像は2MB以下でなければなりません。',
-            'name.required' => 'ユーザー名は必須です。',
-            'name.string' => 'ユーザー名は文字列でなければなりません。',
-            'name.max' => 'ユーザー名は255文字以内でなければなりません。',
-            'postal_code.required' => '郵便番号は必須です。',
-            'postal_code.string' => '郵便番号は文字列でなければなりません。',
-            'postal_code.max' => '郵便番号は10文字以内でなければなりません。',
-            'address.required' => '住所は必須です。',
-            'address.string' => '住所は文字列でなければなりません。',
-            'address.max' => '住所は255文字以内でなければなりません。',
-            'building_name.string' => '建物名は文字列でなければなりません。',
-            'building_name.max' => '建物名は100文字以内でなければなりません。',
+            'profile_image.image' => 'プロフィール画像は画像ファイルでなければなりません',
+            'profile_image.max' => 'プロフィール画像は2MB以下でなければなりません',
+            'name.required' => 'ユーザー名を入力してください',
+            'name.string' => 'ユーザー名は文字列で入力してください',
+            'name.max' => 'ユーザー名は255文字以内で入力してください',
+            'postal_code.required' => '郵便番号を入力してください',
+            'postal_code.string' => '郵便番号は文字列で入力してください',
+            'postal_code.max' => '郵便番号は10文字以内で入力してください',
+            'address.required' => '住所を入力してください',
+            'address.string' => '住所は文字列で入力してください',
+            'address.max' => '住所は255文字以内で入力してください',
+            'building_name.string' => '建物名は文字列で入力してください',
+            'building_name.max' => '建物名は100文字以内で入力してください',
         ];
     }
 }

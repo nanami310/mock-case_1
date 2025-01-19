@@ -9,6 +9,7 @@
   <div class="login-form__heading">
     <h2>ログイン</h2>
   </div>
+  
   <form class="form" action="{{ route('login.submit') }}" method="post">
     @csrf
     <div class="form__group">

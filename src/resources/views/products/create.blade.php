@@ -21,39 +21,37 @@
     }
 </style>
 
+<h1>商品の出品</h1>
+<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div>
+        <label for="image">商品画像</label>
+        <div class="form-group">
+        <label for="image" class="form-label" id="file-label">画像を選択する</label>
+        <input type="file" name="image" class="form-control" id="image" style="display: none;" onchange="updateLabel()">
+        @error('image')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 
-    <h1>商品の出品</h1>
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        
-        <div>
-            <label for="image">商品画像</label>
-            <div class="form-group">
-    <label for="image" class="form-label" id="file-label">画像を選択する</label>
-    <input type="file" name="image" class="form-control" id="image" style="display: none;" onchange="updateLabel()">
-    @error('image')
-        <div class="text-danger">{{ $message }}</div>
-    @enderror
-</div>
+    <script>
+        // ラベルをクリックしたときにファイル選択ダイアログを開く
+        document.getElementById('file-label').addEventListener('click', function() {
+            document.getElementById('image').click();
+        });
 
-<script>
-    // ラベルをクリックしたときにファイル選択ダイアログを開く
-    document.getElementById('file-label').addEventListener('click', function() {
-        document.getElementById('image').click();
-    });
-
-    function updateLabel() {
-        const input = document.getElementById('image');
-        const label = document.getElementById('file-label');
-        if (input.files.length > 0) {
-            label.textContent = '画像が選択されました'; // 選択された場合のテキスト
-        } else {
-            label.textContent = '画像を選択する'; // 何も選択されていない場合のテキスト
+        function updateLabel() {
+            const input = document.getElementById('image');
+            const label = document.getElementById('file-label');
+            if (input.files.length > 0) {
+                label.textContent = '画像が選択されました'; // 選択された場合のテキスト
+            } else {
+                label.textContent = '画像を選択する'; // 何も選択されていない場合のテキスト
+            }
         }
-    }
-</script>
-        </div>
-<h2>商品の詳細</h2>
+    </script>
+
+    <h2>商品の詳細</h2>
         <div>
             <label for="category">商品のカテゴリー</label>
             <select name="category[]" id="category" multiple>
@@ -90,7 +88,8 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-<h2>商品名と説明</h2>
+
+    <h2>商品名と説明</h2>
         <div>
             <label for="name">商品名</label>
             <input type="text" name="name" id="name" value="{{ old('name') }}">
@@ -110,13 +109,13 @@
         <div>
             <label for="price">販売価格</label>
             <div class="input-container">
-        <input type="number" name="price" id="price" min="0" value="{{ old('price') }}" class="form-control price-input">
-    </div>
+                <input type="number" name="price" id="price" min="0" value="{{ old('price') }}" class="form-control price-input">
+            </div>
             @error('price')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <button type="submit">出品する</button>
-    </form>
+</form>
 @endsection

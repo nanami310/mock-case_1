@@ -16,8 +16,8 @@
     <div class="header__inner">
       <div class="header-utilities">
         <a class="header__logo" href="{{ Auth::check() ? '/' : route('login') }}">
-  <img src="{{ asset('storage/images/logo.svg') }}" alt="Attendance Management Logo" class="logo-img">
-</a>
+          <img src="{{ asset('storage/images/logo.svg') }}" alt="Attendance Management Logo" class="logo-img">
+        </a>
         <nav>
           <ul class="header-nav">
             @if (Auth::check())

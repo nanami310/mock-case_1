@@ -26,12 +26,12 @@ class StoreProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'image.required' => '商品画像は必須です。',
-            'category.required' => '商品のカテゴリーは必須です。',
-            'condition.required' => '商品の状態は必須です。',
-            'name.required' => '商品名は必須です。',
-            'description.required' => '商品の説明は必須です。',
-            'price.required' => '値段は必須です。',
+            'image.required' => '商品画像は必須です',
+            'category.required' => '商品のカテゴリーを選択してください',
+            'condition.required' => '商品の状態を選択してください',
+            'name.required' => '商品名を入力してください',
+            'description.required' => '商品の説明を入力してください',
+            'price.required' => '値段を入力してください',
         ];
     }
 }

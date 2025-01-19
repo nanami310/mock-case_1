@@ -51,59 +51,55 @@ class ProductController extends Controller
         return redirect()->route('products.index');
     }
 
-public function show($id)
-{
-    $product = Product::with(['comments.user'])->findOrFail($id);
-    $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect();
-    $likeCount = $product->likeCount(); // いいね数を取得
+    public function show($id)
+    {
+        $product = Product::with(['comments.user'])->findOrFail($id);
+        $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect();
+        $likeCount = $product->likeCount(); // いいね数を取得
 
-    $categories = json_decode($product->category);
+        $categories = json_decode($product->category);
 
-    return view('products.show', compact('product', 'likedProducts', 'likeCount', 'categories'));
-}
-
-public function storeComment(Request $request, $item_id)
-{
-    $request->validate([
-        'comment' => 'required|string|max:255',
-    ]);
-
-    $product = Product::findOrFail($item_id);
-    $product->comments()->create([
-        'user_id' => Auth::id(),
-        'content' => $request->comment,
-    ]);
-
-    return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
-}
-
-public function like($id)
-{
-    $product = Product::findOrFail($id);
-    $user = Auth::user();
-
-    // ユーザーがすでにいいねしているか確認
-    if (!$user->likedProducts()->where('product_id', $product->id)->exists()) {
-        $user->likedProducts()->attach($product->id);
+        return view('products.show', compact('product', 'likedProducts', 'likeCount', 'categories'));
     }
 
-    return redirect()->route('products.show', $id)->with('success', 'いいねしました。');
-}
+    public function storeComment(Request $request, $item_id)
+    {
+        $request->validate([
+            'comment' => 'required|string|max:255',
+        ]);
 
-public function unlike($id)
-{
-    $product = Product::findOrFail($id);
-    $user = Auth::user();
+        $product = Product::findOrFail($item_id);
+        $product->comments()->create([
+            'user_id' => Auth::id(),
+            'content' => $request->comment,
+        ]);
 
-    // ユーザーがいいねしている場合、そのいいねを削除
-    if ($user->likedProducts()->where('product_id', $product->id)->exists()) {
-        $user->likedProducts()->detach($product->id);
+        return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
     }
 
-    return redirect()->route('products.show', $id)->with('success', 'いいねを外しました。');
-}
+    public function like($id)
+    {
+        $product = Product::findOrFail($id);
+        $user = Auth::user();
 
+        // ユーザーがすでにいいねしているか確認
+        if (!$user->likedProducts()->where('product_id', $product->id)->exists()) {
+            $user->likedProducts()->attach($product->id);
+        }
 
+        return redirect()->route('products.show', $id)->with('success', 'いいねしました。');
+    }
 
-    
+    public function unlike($id)
+    {
+        $product = Product::findOrFail($id);
+        $user = Auth::user();
+
+        // ユーザーがいいねしている場合、そのいいねを削除
+        if ($user->likedProducts()->where('product_id', $product->id)->exists()) {
+            $user->likedProducts()->detach($product->id);
+        }
+
+        return redirect()->route('products.show', $id)->with('success', 'いいねを外しました。');
+    }   
 }

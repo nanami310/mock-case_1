@@ -17,27 +17,28 @@ class Product extends Model
     }
 
     public function comments()
-{
-    return $this->hasMany(Comment::class);
-}
+    {
+        return $this->hasMany(Comment::class);
+    }
 
-public function likes()
-{
-    return $this->belongsToMany(User::class, 'likes'); // 'likes'はpivotテーブル名
-}
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes'); // 'likes'はpivotテーブル名
+    }
 
-public function likeCount()
-{
-    return $this->likes()->count();
-}
+    public function likeCount()
+    {
+        return $this->likes()->count();
+    }
 
-public function users()
+    public function users()
     {
         return $this->belongsToMany(User::class, 'purchases');
     }
+
     public function category()
-{
-    return $this->belongsTo(Category::class);
-}
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }
