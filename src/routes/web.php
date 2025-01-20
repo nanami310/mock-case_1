@@ -73,4 +73,6 @@ Route::group([], function () {
     Route::get('/cancel', function () {
         return view('cancel'); // キャンセル時のビュー
     })->name('cancel');
+
+    
 });

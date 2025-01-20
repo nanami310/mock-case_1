@@ -9,29 +9,31 @@ use App\Http\Requests\UpdateProfileRequest;
 class ProfileController extends Controller
 {
     public function edit()
-    {
-        $user = Auth::user();
-        return view('editProfile', compact('user')); // editProfileを指定
-    }
+{
+    $user = Auth::user();
+    return view('editProfile', compact('user')); // editProfileビューを返す
+}
 
     public function update(UpdateProfileRequest $request)
     {
+        $user = Auth::user();
 
         // ユーザー情報の更新
-        $user = Auth::user();
         if ($request->hasFile('profile_image')) {
             // 画像の保存処理を追加
             $path = $request->file('profile_image')->store('profile_images', 'public');
             $user->profile_image = $path;
         }
+        
+        // その他のユーザー情報を更新
         $user->name = $request->name;
         $user->postal_code = $request->postal_code;
         $user->address = $request->address;
         $user->building_name = $request->building_name;
+        $user->is_first_login = false; // フラグを更新
         $user->save();
 
-        // /mypageにリダイレクト
-        return redirect('/mypage')->with('success', 'プロフィールが更新されました。');
+        return redirect()->route('products.index')->with('success', 'プロフィールが更新されました。');
     }
 
     public function show()

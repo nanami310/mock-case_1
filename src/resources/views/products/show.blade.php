@@ -100,17 +100,24 @@
         @endforeach
     </ul>
 
-
-
+    @if (Auth::check())
     <!-- コメント投稿フォーム -->
     <form action="{{ route('comments.store', $product->id) }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="comment" class="form-label">商品へのコメント</label>
-            <textarea class="form-control" id="comment" name="comment" required></textarea>
+            <textarea class="form-control" id="comment" name="comment" ></textarea>
+            @error('comment')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">コメントを送信する</button>
     </form>
+@else
+    <div class="alert alert-warning">
+        コメントするにはログインしてください
+    </div>
+@endif
 </div>
 @endsection
 

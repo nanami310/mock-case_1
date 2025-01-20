@@ -6,21 +6,27 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\CommentRequest;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
-    {
-        $search = $request->input('search');
-        $products = Product::when($search, function ($query) use ($search) {
-            return $query->where('name', 'like', '%' . $search . '%');
-        })->where('user_id', '!=', Auth::id()) // 自分が出品した商品は除外
-          ->get();
+{
+    $search = $request->input('search');
 
-        $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect(); // いいねした商品
+    // おすすめ商品を検索
+    $products = Product::when($search, function ($query) use ($search) {
+        return $query->where('name', 'like', '%' . $search . '%');
+    })->where('user_id', '!=', Auth::id()) // 自分が出品した商品は除外
+      ->get();
 
-        return view('products.index', compact('products', 'likedProducts', 'search'));
-    }
+    // いいねした商品を検索
+    $likedProducts = Auth::check() ? Auth::user()->likedProducts()->when($search, function ($query) use ($search) {
+        return $query->where('name', 'like', '%' . $search . '%');
+    })->get() : collect(); // いいねした商品
+
+    return view('products.index', compact('products', 'likedProducts', 'search'));
+}
 
     public function create()
     {
@@ -62,20 +68,15 @@ class ProductController extends Controller
         return view('products.show', compact('product', 'likedProducts', 'likeCount', 'categories'));
     }
 
-    public function storeComment(Request $request, $item_id)
-    {
-        $request->validate([
-            'comment' => 'required|string|max:255',
-        ]);
-
-        $product = Product::findOrFail($item_id);
-        $product->comments()->create([
-            'user_id' => Auth::id(),
-            'content' => $request->comment,
-        ]);
-
-        return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
-    }
+    public function storeComment(CommentRequest $request, $item_id)
+{
+    $product = Product::findOrFail($item_id);
+    $product->comments()->create([
+        'user_id' => Auth::id(),
+        'content' => $request->comment,
+    ]);
+    return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
+}
 
     public function like($id)
     {
