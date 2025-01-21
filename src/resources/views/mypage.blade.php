@@ -1,77 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+@endsection
 @section('content')
-<style>
-    .mypage {
-        padding: 20px;
-    }
-
-    .profile {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .profile__image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-    }
-
-    .nav {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .nav-item {
-        margin-right: 10px;
-    }
-
-    .nav-link {
-        padding: 10px 15px;
-        text-decoration: none;
-        border: 1px solid transparent;
-        border-radius: 5px 5px 0 0;
-        background-color: #f8f9fa;
-        color: #007bff;
-    }
-
-    .nav-link.active {
-        border-color: #007bff;
-        background-color: #fff;
-        color: #007bff;
-    }
-
-    .tab-content {
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 0 0 5px 5px;
-    }
-
-    .tab-pane {
-        display: none;
-    }
-
-    .tab-pane.show {
-        display: block;
-    }
-
-    .edit-profile-button {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-
-    .edit-profile-button:hover {
-        background-color: #0056b3;
-    }
-</style>
-
 <div class="mypage">
     <div class="profile">
         <img src="{{ asset('storage/profile_images/' . basename($user->profile_image)) }}" alt="プロフィール画像" class="profile__image">

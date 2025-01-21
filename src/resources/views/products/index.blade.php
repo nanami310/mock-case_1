@@ -1,51 +1,10 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/products/index.css') }}">
+@endsection
 @section('content')
-<style>
-    /* タブのスタイル */
-    .nav {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .nav-item {
-        margin-right: 10px;
-    }
-
-    .nav-link {
-        padding: 10px 15px;
-        text-decoration: none;
-        border: 1px solid transparent;
-        border-radius: 5px 5px 0 0;
-        background-color: #f8f9fa;
-        color: #007bff;
-    }
-
-    .nav-link.active {
-        border-color: #007bff;
-        background-color: #fff;
-        color: #007bff;
-    }
-
-    .tab-content {
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 0 0 5px 5px;
-    }
-
-    .tab-pane {
-        display: none;
-    }
-
-    .tab-pane.show {
-        display: block;
-    }
-</style>
 
 <div class="container">
-
 <ul class="nav mb-3">
     <li class="nav-item">
         <a class="nav-link {{ $activeTab === 'mylist' ? '' : 'active' }}" href="/?tab=recommended">おすすめ</a>

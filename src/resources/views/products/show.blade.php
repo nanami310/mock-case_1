@@ -1,38 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/products/show.css') }}">
+@endsection
 @section('content')
-<style>
-    .profile__image {
-    width: 40px; /* 画像の幅を調整 */
-    height: 40px; /* 画像の高さを調整 */
-    border-radius: 50%; /* 丸い形にする */
-    margin-right: 10px; /* 画像とテキストの間に余白を追加 */
-    vertical-align: middle; /* テキストと垂直に揃える */
-}
-
-.like-container {
-    text-align: center; /* 中央揃え */
-}
-
-.like-count {
-    margin-top: 5px; /* 星マークといいね数の間に余白を追加 */
-}
-
-.comment-container {
-    text-align: center; /* 中央揃え */
-    margin-bottom: 10px; /* コメントセクションの下に余白を追加 */
-}
-
-.bubble-icon {
-    font-size: 24px; /* 吹き出しアイコンのサイズ */
-}
-
-.comment-count {
-    margin-top: 5px; /* 吹き出しアイコンとコメント数の間に余白を追加 */
-}
-</style>
-
-
 <div class="container">
     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
     <h1>{{ $product->name }}</h1>

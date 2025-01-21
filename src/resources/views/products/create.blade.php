@@ -1,26 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/products/create.css') }}">
+@endsection
 @section('content')
-<style>
-    .input-container {
-        position: relative;
-    }
-
-    .price-input {
-        padding-left: 30px; /* 左側の余白を追加 */
-    }
-
-    .input-container::before {
-        content: '￥';
-        position: absolute;
-        left: 10px; /* ￥マークの位置 */
-        top: 50%;
-        transform: translateY(-50%); /* 縦中央揃え */
-        font-size: 16px; /* フォントサイズを調整 */
-        color: #000; /* 色を調整 */
-    }
-</style>
-
 <h1>商品の出品</h1>
 <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf

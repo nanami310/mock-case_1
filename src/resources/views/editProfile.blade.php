@@ -1,14 +1,8 @@
 @extends('layouts.app')
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/editProfile.css') }}">
+@endsection
 @section('content')
-<style>
-.form-label {
-    display: block; /* ラベルをブロック要素として表示 */
-    margin-bottom: 0.5rem; /* 下の余白を調整 */
-}
-</style>
-
-
 <div class="container">
     <h1>プロフィール設定</h1>
     

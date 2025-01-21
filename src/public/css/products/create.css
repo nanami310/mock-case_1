@@ -1,0 +1,22 @@
+.input-container {
+    position: relative;
+}
+
+.price-input {
+    padding-left: 30px;
+    /* 左側の余白を追加 */
+}
+
+.input-container::before {
+    content: '￥';
+    position: absolute;
+    left: 10px;
+    /* ￥マークの位置 */
+    top: 50%;
+    transform: translateY(-50%);
+    /* 縦中央揃え */
+    font-size: 16px;
+    /* フォントサイズを調整 */
+    color: #000;
+    /* 色を調整 */
+}
