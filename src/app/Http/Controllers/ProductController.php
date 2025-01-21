@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\ExhibitionRequest;
 use App\Http\Requests\CommentRequest;
 
 class ProductController extends Controller
@@ -33,7 +33,7 @@ class ProductController extends Controller
         return view('products.create'); // 新しい製品作成用のビューを返す
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(ExhibitionRequest $request)
     {
         // 現在のユーザーのIDを取得
         $product = new Product();

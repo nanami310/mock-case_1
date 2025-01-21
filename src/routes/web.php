@@ -26,9 +26,9 @@ Route::group([], function () {
 
     // ルートをProductControllerのindexメソッドに変更
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/?tab=mylist', [ProductController::class, 'index'])->name('products.mylist');
+    Route::get('/', [AuthController::class, 'index'])->name('products.index');
     
-    // products.indexルートを定義
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     
     // products.createルートを定義
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
@@ -47,7 +47,7 @@ Route::group([], function () {
     Route::post('/products/{id}/unlike', [ProductController::class, 'unlike'])->name('products.unlike');
     Route::get('/products/sold', [ProductController::class, 'soldProducts'])->name('products.sold');
 
-    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('editProfile');
+    Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('editProfile');
     Route::post('/update-profile', [ProfileController::class, 'update'])->name('updateProfile');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,9 +61,9 @@ Route::group([], function () {
     // マイページのルート
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
 
-    Route::get('/purchase/create/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
+   Route::get('/purchase/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::post('/address/update/{product}', [AddressController::class, 'update'])->name('address.update');
-    Route::get('/address/change/{product}', [AddressController::class, 'edit'])->name('address.change');
+    Route::get('/purchase/address/{product}', [AddressController::class, 'edit'])->name('address.change');
 
     Route::post('/stripe/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
     Route::get('/success', function () {

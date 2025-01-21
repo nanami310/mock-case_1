@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product; // Productモデルをインポート
-use App\Http\Requests\UpdateAddressRequest;
+use App\Http\Requests\AddressRequest;
 
 class AddressController extends Controller
 {
@@ -19,7 +19,7 @@ class AddressController extends Controller
     }
 
     // 住所更新メソッド
-    public function update(UpdateAddressRequest $request, $productId)
+    public function update(AddressRequest $request, $productId)
     {
 
         $user = auth()->user();

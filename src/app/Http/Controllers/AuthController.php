@@ -71,11 +71,14 @@ class AuthController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all(); // 全製品を取得
         $likedProducts = auth()->user()->likedProducts; // 現在のユーザーの「いいね」した製品を取得
 
-        return redirect()->route('products.index'); // ビューに渡す
+        // タブの状態を取得
+    $activeTab = $request->query('tab', 'recommended'); // デフォルトは'recommended'
+
+    return view('products.index', compact('products', 'likedProducts', 'activeTab'));
     }
 }

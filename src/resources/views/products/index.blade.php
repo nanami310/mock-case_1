@@ -46,19 +46,20 @@
 
 <div class="container">
 
-    <ul class="nav mb-3">
+<ul class="nav mb-3">
+    <li class="nav-item">
+        <a class="nav-link {{ $activeTab === 'mylist' ? '' : 'active' }}" href="/?tab=recommended">おすすめ</a>
+    </li>
+    @if(Auth::check())
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#recommended">おすすめ</a>
+            <a class="nav-link {{ $activeTab === 'mylist' ? 'active' : '' }}" href="/?tab=mylist">マイリスト</a>
         </li>
-        @if(Auth::check())
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#mylist">マイリスト</a>
-            </li>
-        @endif
-    </ul>
+    @endif
+</ul>
+
 
     <div class="tab-content">
-        <div id="recommended" class="tab-pane show active">
+        <div id="recommended" class="tab-pane {{ $activeTab === 'mylist' ? '' : 'show active' }}">
             @foreach($products as $product)
                 <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top">
@@ -73,7 +74,7 @@
         </div>
 
         @if(Auth::check())
-            <div id="mylist" class="tab-pane">
+            <div id="mylist" class="tab-pane {{ $activeTab === 'mylist' ? 'show active' : '' }}">
                 @foreach($likedProducts as $likedProduct)
                     <a href="{{ route('item.show', $likedProduct->id) }}" class="card mb-3 text-decoration-none">
                         <img src="{{ asset('storage/' . $likedProduct->image) }}" alt="{{ $likedProduct->name }}" class="card-img-top">
@@ -97,6 +98,11 @@ $(document).ready(function() {
     // タブのクリックイベント
     $('a[data-toggle="tab"]').on('click', function(e) {
         e.preventDefault(); // デフォルトの動作を防ぐ
+
+        // URLを更新
+        const tab = $(this).data('tab');
+        const newUrl = `/?tab=${tab}`;
+        history.pushState(null, '', newUrl); // URLを変更
 
         // アクティブなタブを切り替え
         $('.nav-link').removeClass('active');

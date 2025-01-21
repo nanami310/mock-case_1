@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -14,7 +14,7 @@ class ProfileController extends Controller
     return view('editProfile', compact('user')); // editProfileビューを返す
 }
 
-    public function update(UpdateProfileRequest $request)
+    public function update(ProfileRequest $request)
     {
         $user = Auth::user();
 
