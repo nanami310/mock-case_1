@@ -33,20 +33,24 @@
         </div>
 
         @if(Auth::check())
-            <div id="mylist" class="tab-pane {{ $activeTab === 'mylist' ? 'show active' : '' }}">
-                @foreach($likedProducts as $likedProduct)
-                    <a href="{{ route('item.show', $likedProduct->id) }}" class="card mb-3 text-decoration-none">
-                        <img src="{{ asset('storage/' . $likedProduct->image) }}" alt="{{ $likedProduct->name }}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $likedProduct->name }}</h5>
-                            @if($likedProduct->is_sold)
-                                <span class="badge bg-danger">Sold</span>
-                            @endif
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+    <div id="mylist" class="tab-pane {{ $activeTab === 'mylist' ? 'show active' : '' }}">
+        @if($likedProducts->isEmpty())
+            <p>いいねした商品はありません。</p>
+        @else
+            @foreach($likedProducts as $likedProduct)
+                <a href="{{ route('item.show', $likedProduct->id) }}" class="card mb-3 text-decoration-none">
+                    <img src="{{ asset('storage/' . $likedProduct->image) }}" alt="{{ $likedProduct->name }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $likedProduct->name }}</h5>
+                        @if($likedProduct->is_sold)
+                            <span class="badge bg-danger">Sold</span>
+                        @endif
+                    </div>
+                </a>
+            @endforeach
         @endif
+    </div>
+@endif
     </div>
 </div>
 

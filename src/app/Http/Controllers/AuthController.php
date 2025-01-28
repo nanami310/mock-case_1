@@ -70,15 +70,22 @@ class AuthController extends Controller
     }
 
 
-
     public function index(Request $request)
-    {
-        $products = Product::all(); // 全製品を取得
-        $likedProducts = auth()->user()->likedProducts; // 現在のユーザーの「いいね」した製品を取得
+{
+    $search = $request->input('search'); // 検索クエリを取得
+    $activeTab = $request->query('tab', 'recommended'); // タブの状態を取得
 
-        // タブの状態を取得
-    $activeTab = $request->query('tab', 'recommended'); // デフォルトは'recommended'
+    // おすすめ商品を検索
+    $products = Product::when($search, function ($query) use ($search) {
+        return $query->where('name', 'like', '%' . $search . '%');
+    })->where('user_id', '!=', auth()->id()) // 自分が出品した商品は除外
+      ->get();
 
-    return view('products.index', compact('products', 'likedProducts', 'activeTab'));
-    }
+    // いいねした商品を検索
+    $likedProducts = auth()->check() ? auth()->user()->likedProducts()->when($search, function ($query) use ($search) {
+        return $query->where('name', 'like', '%' . $search . '%');
+    })->get() : collect(); // 認証されていない場合は空のコレクションを返す
+
+    return view('products.index', compact('products', 'likedProducts', 'activeTab', 'search'));
+}
 }
