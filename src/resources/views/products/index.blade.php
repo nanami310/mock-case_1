@@ -19,17 +19,21 @@
 
     <div class="tab-content">
         <div id="recommended" class="tab-pane {{ $activeTab === 'mylist' ? '' : 'show active' }}">
-            @foreach($products as $product)
-                <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        @if($product->is_sold)
-                            <span class="badge bg-danger">Sold</span>
-                        @endif
-                    </div>
-                </a>
-            @endforeach
+            <div class="row">
+                @foreach($products as $product)
+                <div class="col-3">
+                    <a href="{{ route('item.show', $product->id) }}" class="card mb-3 text-decoration-none">
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            @if($product->is_sold)
+                                <span class="badge bg-danger">Sold</span>
+                            @endif
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+            </div>
         </div>
 
         @if(Auth::check())
@@ -37,7 +41,9 @@
         @if($likedProducts->isEmpty())
             <p>いいねした商品はありません。</p>
         @else
+        <div class="row">
             @foreach($likedProducts as $likedProduct)
+            <div class="col-3">
                 <a href="{{ route('item.show', $likedProduct->id) }}" class="card mb-3 text-decoration-none">
                     <img src="{{ asset('storage/' . $likedProduct->image) }}" alt="{{ $likedProduct->name }}" class="card-img-top">
                     <div class="card-body">
@@ -47,7 +53,9 @@
                         @endif
                     </div>
                 </a>
+                </div>
             @endforeach
+            </div>
         @endif
     </div>
 @endif

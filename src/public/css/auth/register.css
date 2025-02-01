@@ -1,0 +1,97 @@
+/* 会員登録コンテンツのスタイル */
+.register__content {
+    position: absolute;
+    /* 絶対位置指定 */
+    top: 50%;
+    /* 縦方向の中央 */
+    left: 50%;
+    /* 横方向の中央 */
+    transform: translate(-50%, -50%);
+    /* 中央揃えのために位置を調整 */
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-direction: column;
+    /* 縦方向に配置 */
+    align-items: center;
+    /* 中央揃え */
+    padding: 20px;
+    /* 内側の余白を追加 */
+}
+
+/* ヘッディングのスタイル */
+.register-form__heading {
+    margin-bottom: 20px;
+    /* 下に余白を追加 */
+}
+
+/* フォームグループのスタイル */
+.form__group {
+    margin-bottom: 30px;
+    /* 各フォームグループの下に余白を追加 */
+    width: 100%;
+    /* 幅を100%に設定 */
+}
+
+/* 入力フィールドのスタイル */
+.form__input--text input {
+    width: 500px;
+    /* 幅を設定 */
+    max-width: 1000px;
+    /* 最大幅を設定 */
+    padding: 15px;
+    /* 内側の余白を調整 */
+    border: 1px solid #ccc;
+    /* ボーダーのスタイル */
+    border-radius: 4px;
+    /* 角を丸くする */
+}
+
+/* ラベルのスタイル */
+.form__label--item {
+    font-weight: bold;
+    /* 太字に設定 */
+}
+
+/* ボタンのスタイル */
+.form__button-submit {
+    width: 100%;
+    /* 幅を100%に設定 */
+    padding: 10px;
+    /* 内側の余白 */
+    border: none;
+    /* ボーダーを消す */
+    border-radius: 4px;
+    /* 角を丸くする */
+    background-color: #ff5555;
+    /* ボタンの背景色 */
+    color: white;
+    /* テキストの色 */
+    cursor: pointer;
+    /* カーソルをポインタに */
+    font-size: 16px;
+    /* フォントサイズを設定 */
+    margin-top: 30px;
+    /* 上に余白を追加 */
+    font-weight: bold;
+    /* 太字に設定 */
+}
+
+/* リンクのスタイル */
+.login__link {
+    text-align: center;
+    /* テキストを中央揃え */
+    margin-top: 20px;
+    /* 上に余白を追加 */
+}
+
+.login__link a {
+    text-decoration: none;
+    /* 下線を消す */
+    color: #007bff;
+    /* リンクの色を設定 */
+}
+
+.login__link a:hover {
+    text-decoration: underline;
+    /* ホバー時に下線を表示（オプション） */
+}

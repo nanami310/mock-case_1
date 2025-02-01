@@ -31,3 +31,37 @@
 .tab-pane.show {
     display: block;
 }
+
+
+/* 商品カードを含む行のスタイル */
+.row {
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-wrap: wrap;
+    /* 行が折り返すように */
+    margin: -7.5px;
+    /* カード間の余白を調整 */
+}
+
+/* 商品カードのスタイル */
+.col-3 {
+    flex: 0 0 calc(25% - 15px);
+    /* 4枚横並びに配置（15pxの余白を考慮） */
+    margin: 7.5px;
+    /* 上下左右の余白を追加 */
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .col-3 {
+        flex: 0 0 calc(50% - 15px);
+        /* 画面幅768px以下で2枚横並び */
+    }
+}
+
+@media (max-width: 480px) {
+    .col-3 {
+        flex: 0 0 100%;
+        /* 画面幅480px以下で1枚横並び */
+    }
+}

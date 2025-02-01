@@ -12,19 +12,21 @@
   
   <form class="form" action="{{ route('login.submit') }}" method="post">
     @csrf
+    <div class="form__group">
     <div class="form__group-title">
-  <span class="form__label--item">ユーザー名/メールアドレス</span>
-</div>
-<div class="form__group-content">
-  <div class="form__input--text">
-    <input type="text" name="username_or_email" value="{{ old('username_or_email') }}"  />
-  </div>
-  <div class="form__error">
-    @error('username_or_email')
-      {{ $message }}
-    @enderror
-  </div>
-</div>
+      <span class="form__label--item">ユーザー名/メールアドレス</span>
+    </div>
+    <div class="form__group-content">
+      <div class="form__input--text">
+        <input type="text" name="username_or_email" value="{{ old('username_or_email') }}"  />
+      </div>
+      <div class="form__error">
+        @error('username_or_email')
+          {{ $message }}
+        @enderror
+      </div>
+    </div>
+    </div>
     <div class="form__group">
       <div class="form__group-title">
         <span class="form__label--item">パスワード</span>
