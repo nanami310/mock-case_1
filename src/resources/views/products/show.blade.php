@@ -67,22 +67,18 @@
             <span class="badge bg-danger">Sold</span>
         @endif
 
-
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <h2>コメント ({{ $product->comments->count() }})</h2> <!-- コメント数を表示 -->
+        <h2 class="come2">コメント ({{ $product->comments->count() }})</h2> <!-- コメント数を表示 -->
         <ul>
-            @foreach($product->comments as $comment)
-                <li>
-                    <img src="{{ asset('storage/profile_images/' . basename($comment->user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
-                    <strong>{{ $comment->user->name }}</strong> - {{ $comment->content }}
-                </li>
-            @endforeach
-        </ul>
+    @foreach($product->comments as $comment)
+        <li class="comment-item">
+            <div class="user-info">
+                <img src="{{ asset('storage/profile_images/' . basename($comment->user->profile_image)) }}" alt="プロフィール画像" class="profile__image">
+                <strong>{{ $comment->user->name }}</strong>
+            </div>
+            <p class="comment-content">{{ $comment->content }}</p>
+        </li>
+    @endforeach
+</ul>
 
         @if (Auth::check())
         <!-- コメント投稿フォーム -->
@@ -90,6 +86,7 @@
             @csrf
             <div class="mb-3">
                 <label for="comment" class="form-label">商品へのコメント</label>
+                <br>
                 <textarea class="form-control" id="comment" name="comment" ></textarea>
                 @error('comment')
                     <div class="text-danger">{{ $message }}</div>
