@@ -1,67 +1,108 @@
-.nav {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    border-bottom: 1px solid #ccc;
-}
-.nav-item {
-    margin-right: 10px;
-}
-.nav-link {
-    padding: 10px 15px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 5px 5px 0 0;
-    background-color: #f8f9fa;
-    color: #007bff;
-}
-.nav-link.active {
-    border-color: #007bff;
-    background-color: #fff;
-    color: #007bff;
-}
-.tab-content {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 0 0 5px 5px;
-}
-.tab-pane {
-    display: none;
-}
-.tab-pane.show {
-    display: block;
+.container {
+    padding: 20px;
 }
 
-
-/* 商品カードを含む行のスタイル */
-.row {
+.card-container {
     display: flex;
     /* フレックスボックスを使用 */
     flex-wrap: wrap;
-    /* 行が折り返すように */
-    margin: -7.5px;
-    /* カード間の余白を調整 */
+    /* 複数行に折り返す */
+    gap: 15px;
+    /* カード間の隙間を設定 */
+    justify-content: flex-start;
+    /* 左揃えにする */
+    margin-left: 20px;
 }
 
-/* 商品カードのスタイル */
-.col-3 {
-    flex: 0 0 calc(25% - 15px);
-    /* 4枚横並びに配置（15pxの余白を考慮） */
-    margin: 7.5px;
-    /* 上下左右の余白を追加 */
+.card {
+    flex: 0 0 350px;
+    /* 固定幅を設定 */
+    height: 400px;
+    /* 高さを固定 */
+    margin: 10px 0;
+    /* 上下に余白を追加 */
 }
 
-/* レスポンシブデザイン */
-@media (max-width: 768px) {
-    .col-3 {
-        flex: 0 0 calc(50% - 15px);
-        /* 画面幅768px以下で2枚横並び */
-    }
+.card img {
+    max-width: 100%;
+    /* 画像のサイズを調整 */
+    height: auto;
+    /* アスペクト比を保持 */
 }
 
-@media (max-width: 480px) {
-    .col-3 {
-        flex: 0 0 100%;
-        /* 画面幅480px以下で1枚横並び */
-    }
+.nav {
+    list-style-type: none;
+    /* リストスタイルを消す */
+    padding: 0;
+    /* パディングを消す */
+    display: flex;
+    /* フレックスボックスを使用 */
+    border-bottom: 1px solid #ccc;
+    /* 下線を追加 */
+    margin-bottom: 20px;
+    /* 下にマージンを追加 */
+    margin-top: 50px;
+}
+
+.nav-item {
+    margin-right: 30px;
+    /* アイテム間の余白 */
+}
+
+.nav-link {
+    padding: 10px 15px;
+    /* パディングを設定 */
+    text-decoration: none;
+    /* 下線を消す */
+    font-weight: bold;
+    /* 太字 */
+    color: #5f5f5f;
+    /* 文字色 */
+    font-size: 20px;
+    /* フォントサイズ */
+}
+
+.nav-link.active {
+    color: #ff5555;
+    /* アクティブなタブの文字色 */
+}
+
+.card-container a {
+    text-decoration: none;
+    /* リンクの下線を消す */
+    color: inherit;
+    /* 親要素の色を継承 */
+}
+
+.card-title {
+    font-size: 20px;
+    /* タイトルのフォントサイズ */
+    margin-top: 3px;
+    /* 上のマージン */
+    margin-bottom: 0;
+    /* 下のマージンを消す */
+}
+
+/* バッジのスタイル */
+.badge {
+    margin-top: 5px;
+    /* バッジの上にスペースを追加 */
+}
+
+/* タブの表示制御 */
+.tab-content {
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-wrap: wrap;
+    /* 複数行に折り返す */
+}
+
+.tab-pane {
+    display: none;
+    /* デフォルトで非表示 */
+}
+
+.tab-pane.show {
+    display: block;
+    /* アクティブなタブを表示 */
 }

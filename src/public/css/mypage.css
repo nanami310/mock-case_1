@@ -6,9 +6,9 @@
     text-align: center;
     margin-bottom: 20px;
     display: flex;
-        /* フレックスボックスを使用 */
+    /* フレックスボックスを使用 */
     justify-content: center;
-        /* 水平方向に中央揃え */
+    /* 水平方向に中央揃え */
 }
 
 .profile__image {
@@ -16,16 +16,16 @@
     height: 150px;
     border-radius: 50%;
     margin-right: 50px;
-        /* 画像と名前の間隔 */
+    /* 画像と名前の間隔 */
 }
 
 .profile__name {
     margin: 0 10px;
     /* 名前とボタンの間隔 */
     display: flex;
-        /* フレックスを使用して名前を中央揃え */
-        align-items: center;
-        /* 垂直方向に中央揃え */
+    /* フレックスを使用して名前を中央揃え */
+    align-items: center;
+    /* 垂直方向に中央揃え */
     font-size: 30px;
 }
 
@@ -59,10 +59,11 @@
 
 .tab-content {
     display: flex;
-        flex-wrap: wrap;
-        /* 複数行に折り返す */
-        gap: 15px;
-        /* カード間の隙間を設定 */
+    flex-wrap: wrap;
+    /* 複数行に折り返す */
+    gap: 15px;
+    /* カード間の隙間を設定 */
+    margin-left:20px;
 }
 
 .tab-pane {
@@ -81,15 +82,15 @@
     text-decoration: none;
     border-radius: 5px;
     align-self: center;
-        /* ボタンを中央に配置 */
-        margin-left: 400px;
-            /* ボタンを名前から少し離す */
+    /* ボタンを中央に配置 */
+    margin-left: 400px;
+    /* ボタンを名前から少し離す */
     border: 2px solid #ff5555;
     font-weight: bold;
 }
 
 .edit-profile-button:hover {
-    background-color:#ff5555;
+    background-color: #ff5555;
     color: white;
 }
 
@@ -98,24 +99,26 @@
     /* フレックスボックスを使用 */
     flex-wrap: wrap;
     /* 複数行に折り返す */
-    gap: 10px;
+    gap: 15px;
     /* カード間の隙間を設定 */
 }
 
 .card {
-    flex: 1 1 calc(20% - 15px);
-    /* 4枚を一行に配置、サイズを小さくする */
-    border-radius: 5px;
-    /* カードの角を丸める */
-    margin: 20px;
-    /* カードの下に余白を追加 */
+    width: 350px;
+    /* カードの固定幅 */
+    height: 400px;
+    /* カードの固定高さ */
+    overflow: hidden;
+    /* 内容がはみ出さないように */
 }
 
 .card img {
-    max-width: 100%;
-    /* 画像のサイズを調整 */
-    height: auto;
-    /* アスペクト比を保持 */
+    width: 100%;
+    /* 画像をカードの幅に合わせる */
+    height: 350px;
+    /* 固定高さ */
+    object-fit: cover;
+    /* 画像のアスペクト比を維持 */
 }
 
 .card-container a {
@@ -125,10 +128,10 @@
     /* 親要素の色を継承 */
 }
 
-.card-title{
+.card-title {
     font-size: 20px;
     margin-top: 3px;
-        /* 上のマージンをさらに小さくする */
-        margin-bottom: 0;
-        /* 下のマージンを消す */
+    /* 上のマージンをさらに小さくする */
+    margin-bottom: 0;
+    /* 下のマージンを消す */
 }
