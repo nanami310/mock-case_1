@@ -68,8 +68,8 @@
             @enderror
         </div>
 
-    <h2>商品名と説明</h2>
-    <div class="underline"></div>
+        <h2>商品名と説明</h2>
+        <div class="underline"></div>
         <div class="form-group">
             <label for="name" class="form-label">商品名</label>
             <input type="text" name="name" id="name" value="{{ old('name') }}" class="product-name form-control">
@@ -95,8 +95,7 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-
-               <button type="submit">出品する</button>
+        <button type="submit">出品する</button>
     </form>
 </div>
 
@@ -106,17 +105,17 @@
 
     buttons.forEach(button => {
         button.addEventListener('click', () => {
-            button.classList.toggle('selected'); // ボタンの選択状態を切り替え
-            updateSelectedCategories(); // 選択したカテゴリーを更新
+            button.classList.toggle('selected'); 
+            updateSelectedCategories(); 
         });
     });
 
     function updateSelectedCategories() {
         const selectedCategories = Array.from(buttons)
             .filter(button => button.classList.contains('selected'))
-            .map(button => button.getAttribute('data-value')); // data-valueを取得
+            .map(button => button.getAttribute('data-value')); 
 
-        selectedCategoriesInput.value = selectedCategories.join(','); // 隠しフィールドに選択したカテゴリーをセット
+        selectedCategoriesInput.value = selectedCategories.join(',');
     }
 </script>
 @endsection

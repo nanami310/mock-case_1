@@ -8,17 +8,17 @@ class ProfileRequest extends FormRequest
 {
     public function authorize()
     {
-        return true; // 認可を許可する場合はtrue
+        return true;
     }
 
     public function rules()
     {
         return [
-            'profile_image' => 'nullable|image|max:2048', // 画像は任意、最大2MB
-            'name' => 'required|string|max:255', // ユーザー名は必須、文字列、最大255文字
-            'postal_code' => 'required|string|max:10', // 郵便番号は必須、文字列、最大10文字
-            'address' => 'required|string|max:255', // 住所は必須、文字列、最大255文字
-            'building_name' => 'nullable|string|max:100', // 建物名は任意、最大100文字
+            'profile_image' => 'nullable|image|max:2048',
+            'name' => 'required|string|max:255', 
+            'postal_code' => 'required|string|max:10', 
+            'address' => 'required|string|max:255',
+            'building_name' => 'nullable|string|max:100', 
         ];
     }
 

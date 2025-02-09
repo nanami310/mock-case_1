@@ -12,16 +12,16 @@ class AddIsFirstLoginToUsersTable extends Migration
      * @return void
      */
     public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->boolean('is_first_login')->default(true); // 初回ログインフラグ
-    });
-}
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_first_login')->default(true); 
+        });
+    }
 
-public function down()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('is_first_login');
-    });
-}
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_first_login');
+        });
+    }
 }

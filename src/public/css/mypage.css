@@ -6,9 +6,7 @@
     text-align: center;
     margin-bottom: 20px;
     display: flex;
-    /* フレックスボックスを使用 */
     justify-content: center;
-    /* 水平方向に中央揃え */
 }
 
 .profile__image {
@@ -16,16 +14,12 @@
     height: 150px;
     border-radius: 50%;
     margin-right: 50px;
-    /* 画像と名前の間隔 */
 }
 
 .profile__name {
     margin: 0 10px;
-    /* 名前とボタンの間隔 */
     display: flex;
-    /* フレックスを使用して名前を中央揃え */
     align-items: center;
-    /* 垂直方向に中央揃え */
     font-size: 30px;
 }
 
@@ -60,9 +54,7 @@
 .tab-content {
     display: flex;
     flex-wrap: wrap;
-    /* 複数行に折り返す */
     gap: 15px;
-    /* カード間の隙間を設定 */
     margin-left:20px;
 }
 
@@ -82,9 +74,7 @@
     text-decoration: none;
     border-radius: 5px;
     align-self: center;
-    /* ボタンを中央に配置 */
     margin-left: 400px;
-    /* ボタンを名前から少し離す */
     border: 2px solid #ff5555;
     font-weight: bold;
 }
@@ -96,42 +86,29 @@
 
 .card-container {
     display: flex;
-    /* フレックスボックスを使用 */
     flex-wrap: wrap;
-    /* 複数行に折り返す */
     gap: 15px;
-    /* カード間の隙間を設定 */
 }
 
 .card {
     width: 350px;
-    /* カードの固定幅 */
     height: 400px;
-    /* カードの固定高さ */
     overflow: hidden;
-    /* 内容がはみ出さないように */
 }
 
 .card img {
     width: 100%;
-    /* 画像をカードの幅に合わせる */
     height: 350px;
-    /* 固定高さ */
     object-fit: cover;
-    /* 画像のアスペクト比を維持 */
 }
 
 .card-container a {
     text-decoration: none;
-    /* リンクの下線を消す */
     color: inherit;
-    /* 親要素の色を継承 */
 }
 
 .card-title {
     font-size: 20px;
     margin-top: 3px;
-    /* 上のマージンをさらに小さくする */
     margin-bottom: 0;
-    /* 下のマージンを消す */
 }

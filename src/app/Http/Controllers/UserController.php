@@ -10,9 +10,8 @@ class UserController extends Controller
     public function showMypage()
     {
         $user = Auth::user();
-        // 出品した商品と購入した商品の取得
-        $soldProducts = $user->soldProducts ?? []; // 出品した商品
-        $purchasedProducts = $user->purchasedProducts ?? []; // 購入した商品
+        $soldProducts = $user->soldProducts ?? [];
+        $purchasedProducts = $user->purchasedProducts ?? [];
 
 
         return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));
@@ -28,13 +27,10 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        // 自分が出品した商品を取得
         $myProducts = $user->soldProducts()->pluck('id')->toArray();
 
-        // おすすめ商品（自分が出品していない商品）
         $products = Product::whereNotIn('id', $myProducts)->get();
 
-        // ユーザーが「いいね」した商品を取得
         $likedProducts = $user->likedProducts;
 
         return view('products.index', compact('products', 'likedProducts'));
@@ -43,8 +39,7 @@ class UserController extends Controller
     public function myPage()
     {
         $user = Auth::user();
-        // 出品した商品を取得（コレクションとして）
-        $soldProducts = $user->soldProducts; // ここはリレーションを直接使用
+        $soldProducts = $user->soldProducts; 
         $purchasedProducts = $user->purchasedProducts; 
 
         return view('mypage', compact('user', 'soldProducts', 'purchasedProducts'));

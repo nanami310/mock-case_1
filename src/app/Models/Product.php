@@ -23,7 +23,7 @@ class Product extends Model
 
     public function likes()
     {
-        return $this->belongsToMany(User::class, 'likes'); // 'likes'はpivotテーブル名
+        return $this->belongsToMany(User::class, 'likes'); 
     }
 
     public function likeCount()

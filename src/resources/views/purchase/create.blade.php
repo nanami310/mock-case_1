@@ -58,7 +58,6 @@
 
     paymentMethodSelect.addEventListener('change', function() {
         subtotalPayment.textContent = this.options[this.selectedIndex].text;
-        // 小計の計算（支払方法によって変わる場合はここにロジックを追加）
     });
 </script>
 

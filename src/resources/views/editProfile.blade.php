@@ -20,9 +20,9 @@
             const label = document.getElementById('file-label');
 
             if (input.files.length > 0) {
-                label.textContent = '画像が選択されました'; // 選択された場合のテキスト
+                label.textContent = '画像が選択されました';
             } else {
-                label.textContent = '画像を選択する'; // 何も選択されていない場合のテキスト
+                label.textContent = '画像を選択する'; 
             }
         }
     </script>

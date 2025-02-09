@@ -1,124 +1,79 @@
-/* ヘッダー全体のスタイル */
 .header {
     background-color: #000000;
-    /* ヘッダーの背景色 */
     padding: 10px 20px;
-    /* ヘッダーの内側の余白 */
 }
 
-/* ヘッダー内部のコンテナ */
 .header__inner {
     display: flex;
-    /* フレックスボックスを使用 */
     align-items: center;
-    /* 垂直方向の中央揃え */
     justify-content: space-between;
-    /* 要素間のスペースを均等に */
 }
 
-/* ロゴのスタイル */
 .header-logo {
     flex: 1;
-    /* 左端に配置 */
 }
 
-/* ヘッダーのユーティリティ部分 */
 .header-utilities {
     flex: 2;
-    /* 中央に配置 */
     display: flex;
-    /* フレックスボックスを使用 */
     justify-content: center;
-    /* 中央揃え */
 }
 
-/* 検索フォームのスタイル */
 .search-form {
     display: flex;
-    /* フレックスボックスを使用 */
 }
 
-/* 検索入力フィールドのスタイル */
 .search-form input[type="text"] {
-    padding: 10px; /* 内側の余白を調整 */
-    width: 400px !important; /* 幅を3倍に設定（必要に応じて調整） */
-    border-radius: 15px; /* 角を丸くする */
-    border: 1px solid #ccc; /* ボーダーのスタイル */
-    padding: 10px; /* 内側の余白を調整 */
-    width: 300%; /* 幅を3倍に設定（必要に応じて調整） */
-    border-radius: 5px; /* 角を丸くする */
-    border: 1px solid #ccc; /* ボーダーのスタイル */
+    padding: 10px; 
+    width: 400px !important;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 10px; 
+    width: 300%; 
+    border-radius: 5px;
+    border: 1px solid #ccc; 
 }
 
-/* ナビゲーションリストのスタイル */
 .header-nav {
     display: flex;
-    /* フレックスボックスを使用 */
     list-style: none;
-    /* リストのドットを消す */
     margin: 0;
-    /* マージンをリセット */
     padding: 0;
-    /* パディングをリセット */
     align-items: center;
-        /* 垂直方向の中央揃え */
 }
 
-/* ナビゲーションアイテムのスタイル */
 .header-nav__item {
     margin-left: 20px;
-    /* アイテム間のスペース */
 }
 
-/* ナビゲーションリンクのスタイル（下線を消す） */
 .header-nav__link,
 .btn-primary {
     text-decoration: none;
-    /* 下線を消す */
     color: white;
-    /* テキストの色（必要に応じて変更） */
     font-size: 16px;
-    /* フォントサイズを統一 */
 }
 
-/* ボタンのスタイル */
 .header-nav__button,
 .header-nav__link {
     padding: 5px 10px;
-    /* 内側の余白 */
     background-color: #000000;
-    /* ボタンの背景色 */
     color: white;
-    /* テキストの色 */
     border: none;
-    /* ボーダーを消す */
     border-radius: 5px;
-    /* 角を丸くする */
     cursor: pointer;
-    /* カーソルをポインタに */
     font-size: 16px;
-    /* フォントサイズを統一 */
 }
 
 .btn {
     padding: 5px 10px;
-    /* 内側の余白 */
     background-color: white;
-    /* ボタンの背景色 */
     color: #000000;
-    /* テキストの色 */
     border: none;
-    /* ボーダーを消す */
     border-radius: 5px;
-    /* 角を丸くする */
     cursor: pointer;
-    /* カーソルをポインタに */
     font-size: 16px;
-    /* フォントサイズを統一 */
 }
 
-/* ボタンにホバー効果を追加 */
 .btn:hover {
     background-color: #757575;
-    /* ホバー時の背景色 */
 }

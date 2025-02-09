@@ -11,7 +11,6 @@ class Comment extends Model
 
     protected $fillable = ['product_id', 'user_id', 'content'];
 
-    // リレーションシップの定義（例）
     public function product()
     {
         return $this->belongsTo(Product::class);

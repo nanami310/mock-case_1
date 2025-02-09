@@ -9,28 +9,25 @@ use App\Http\Requests\ProfileRequest;
 class ProfileController extends Controller
 {
     public function edit()
-{
-    $user = Auth::user();
-    return view('editProfile', compact('user')); // editProfileビューを返す
-}
+    {
+        $user = Auth::user();
+        return view('editProfile', compact('user'));
+    }
 
     public function update(ProfileRequest $request)
     {
         $user = Auth::user();
 
-        // ユーザー情報の更新
         if ($request->hasFile('profile_image')) {
-            // 画像の保存処理を追加
             $path = $request->file('profile_image')->store('profile_images', 'public');
             $user->profile_image = $path;
         }
         
-        // その他のユーザー情報を更新
         $user->name = $request->name;
         $user->postal_code = $request->postal_code;
         $user->address = $request->address;
         $user->building_name = $request->building_name;
-        $user->is_first_login = false; // フラグを更新
+        $user->is_first_login = false;
         $user->save();
 
         return redirect()->route('products.index')->with('success', 'プロフィールが更新されました。');
@@ -40,10 +37,9 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
     
-        // 売れた商品を取得するロジックを追加
-        $soldProducts = $user->soldProducts; // ユーザーの売れた商品を取得
-        $purchasedProducts = $user->purchasedProducts; // ユーザーの購入した商品を取得
+        $soldProducts = $user->soldProducts; 
+        $purchasedProducts = $user->purchasedProducts; 
 
-        return view('mypage', compact('user', 'soldProducts', 'purchasedProducts')); // 変数を渡す
+        return view('mypage', compact('user', 'soldProducts', 'purchasedProducts')); 
     }
 }

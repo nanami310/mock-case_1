@@ -11,40 +11,36 @@ use App\Http\Requests\CommentRequest;
 class ProductController extends Controller
 {
     public function index(Request $request)
-{
-    $search = $request->input('search');
+    {
+        $search = $request->input('search');
 
-    // おすすめ商品を検索
-    $products = Product::when($search, function ($query) use ($search) {
-        return $query->where('name', 'like', '%' . $search . '%');
-    })->where('user_id', '!=', Auth::id()) // 自分が出品した商品は除外
-      ->get();
+        $products = Product::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->where('user_id', '!=', Auth::id()) 
+        ->get();
 
-    // いいねした商品を検索
-    $likedProducts = Auth::check() ? Auth::user()->likedProducts()->when($search, function ($query) use ($search) {
-        return $query->where('name', 'like', '%' . $search . '%');
-    })->get() : collect(); // いいねした商品
+        $likedProducts = Auth::check() ? Auth::user()->likedProducts()->when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->get() : collect(); 
 
-    return view('products.index', compact('products', 'likedProducts', 'search'));
-}
+        return view('products.index', compact('products', 'likedProducts', 'search'));
+    }
 
     public function create()
     {
-        return view('products.create'); // 新しい製品作成用のビューを返す
+        return view('products.create'); 
     }
 
     public function store(ExhibitionRequest $request)
     {
-        // 現在のユーザーのIDを取得
         $product = new Product();
-        $product->user_id = auth()->id(); // ユーザーIDを設定
+        $product->user_id = auth()->id();
 
-        // 画像ファイルの保存
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension(); // ファイル名を生成
-            $file->storeAs('images', $filename, 'public'); // publicディスクに保存
-            $product->image = 'images/' . $filename; // 保存した画像のパスを設定
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('images', $filename, 'public'); 
+            $product->image = 'images/' . $filename; 
         }
 
         $product->category = json_encode($request->input('category'));
@@ -61,7 +57,7 @@ class ProductController extends Controller
     {
         $product = Product::with(['comments.user'])->findOrFail($id);
         $likedProducts = Auth::check() ? Auth::user()->likedProducts : collect();
-        $likeCount = $product->likeCount(); // いいね数を取得
+        $likeCount = $product->likeCount(); 
 
         $categories = json_decode($product->category);
 
@@ -69,21 +65,20 @@ class ProductController extends Controller
     }
 
     public function storeComment(CommentRequest $request, $item_id)
-{
-    $product = Product::findOrFail($item_id);
-    $product->comments()->create([
-        'user_id' => Auth::id(),
-        'content' => $request->comment,
-    ]);
-    return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
-}
+    {
+        $product = Product::findOrFail($item_id);
+        $product->comments()->create([
+            'user_id' => Auth::id(),
+            'content' => $request->comment,
+        ]);
+        return redirect()->route('item.show', $item_id)->with('success', 'コメントが送信されました。');
+    }
 
     public function like($id)
     {
         $product = Product::findOrFail($id);
         $user = Auth::user();
 
-        // ユーザーがすでにいいねしているか確認
         if (!$user->likedProducts()->where('product_id', $product->id)->exists()) {
             $user->likedProducts()->attach($product->id);
         }
@@ -96,7 +91,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $user = Auth::user();
 
-        // ユーザーがいいねしている場合、そのいいねを削除
         if ($user->likedProducts()->where('product_id', $product->id)->exists()) {
             $user->likedProducts()->detach($product->id);
         }

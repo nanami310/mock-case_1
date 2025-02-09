@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasFactory; // HasFactoryトレイトを追加
+    use HasFactory;
 
-    // マスアサインメントを許可するプロパティ
     protected $fillable = [
-        'name',           // ユーザー名
-        'email',          // メールアドレス
-        'password',       // パスワード
-        'postal_code',    // 郵便番号
-        'address',        // 住所
-        'building_name',  // 建物名
+        'name',           
+        'email',          
+        'password',       
+        'postal_code',    
+        'address',        
+        'building_name',  
         'profile_image',
     ];
 
@@ -32,7 +31,7 @@ class User extends Authenticatable
 
     public function soldProducts()
     {
-        return $this->hasMany(Product::class, 'user_id'); // ここで出品した商品を取得
+        return $this->hasMany(Product::class, 'user_id'); 
     }
 
     public function likedProducts()

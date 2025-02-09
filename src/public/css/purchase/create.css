@@ -4,56 +4,39 @@
     box-sizing: border-box;
 }
 
-/* コンテナのスタイル */
 .container {
     margin: 70px;
 }
 
-/* Flexboxを使った左右配置 */
 .flex-container {
     display: flex;
-    /* Flexboxを使用 */
     justify-content: space-between;
-    /* 左右に配置 */
 }
 
-/* 左右のカラムのスタイル */
 .left-column{
     width: 58%;
-    /* 幅を48%に設定 */
     padding: 10px;
-    /* パディングを追加 */
 }
 
 .right-column {
     width: 38%;
-    /* 幅を48%に設定 */
     padding: 10px;
-    /* パディングを追加 */
 }
 
-/* 商品情報のスタイル */
 .product-info {
     display: flex;
-    /* Flexboxを使用して画像と詳細を横並びに */
     margin-bottom: 50px;
 }
 
-/* 商品画像のスタイル */
 .img-fluid {
     max-width: 150px;
-    /* 画像の最大幅を設定 */
     height: auto;
-    /* 高さを自動に設定 */
     margin-right: 20px;
-    /* 画像と詳細の間にマージンを追加 */
 }
 
-/* 商品詳細のスタイル */
 .product-details {
     display: flex;
     flex-direction: column;
-    /* 縦に並べる */
     margin-left: 20px;
 }
 
@@ -62,105 +45,67 @@
     font-size: 25px;
 }
 
-/* 支払方法のスタイル */
 .payment-method {
     margin-top: 20px;
-    /* 支払方法の上にマージンを追加 */
 }
 
-/* 支払い方法のセレクトボックスのスタイル */
 .payment-method select {
     width: 200px;
-    /* 希望の幅に調整 */
     padding: 5px;
-    /* 内側の余白を追加 */
     border: 1px solid #ccc;
-    /* ボーダーのスタイル */
     border-radius: 4px;
-    /* 角を丸める */
     font-size: 16px;
-    /* フォントサイズを調整 */
     margin-bottom: 20px;
 }
 
-/* ボタンのスタイル */
 .btn {
     margin-top: 10px;
-    /* ボタンの上にマージンを追加 */
 }
 
-/* 支払方法のセレクトボックスのスタイル */
 select {
     width: 100%;
-    /* セレクトボックスの幅を100%に */
     padding: 10px;
-    /* パディングを追加 */
     margin-top: 10px;
-    /* マージンを追加 */
     border: 1px solid #ccc;
-    /* ボーダーを追加 */
     border-radius: 4px;
-    /* 角を丸める */
 }
 
-/* 下線を引くためのクラス */
 .underline {
     width: 100%;
-    /* 幅を100%に設定 */
     height: 1px;
-    /* 下線の高さ */
     background-color: #555;
-    /* 下線の色 */
     margin: 10px 0;
-    /* 上下の余白 */
 }
 
-/* 配送先のヘッダーのスタイル */
 .delivery-header {
     display: flex;
-    /* Flexboxを使用 */
     justify-content: space-between;
-    /* 左右に寄せる */
     align-items: center;
-    /* 垂直方向に中央揃え */
     margin-bottom: 10px;
-    /* 下にマージンを追加 */
 }
 
-/* 配送先のタイトルのスタイル */
 .delivery-header h3 {
     margin: 0;
-    /* デフォルトのマージンをリセット */
 }
 
-/* 変更ボタンのスタイル */
 .delivery-header .btn {
     margin-left: auto;
-    /* 左側に寄せる */
     text-decoration: none;
-    /* 下線を消す */
     color: #0D99FF;
 }
 
-/* ボタンのホバー時のスタイル（必要に応じて） */
 .delivery-header .btn:hover {
     text-decoration: none;
-    /* ホバー時も下線を消す */
 }
 
-/* 右に寄せるためのスタイル */
 .shift-right {
     margin: 30px 0;
     margin-left: 50px;
-    /* 1列分の幅に応じて調整 */
 }
 
-/* 支払い情報の枠のスタイル */
 .payment-summary {
     border: 2px solid #000000;
-    /* 枠線のスタイル */
     padding: 50px 0;
-    /* 内側の余白 */
 }
 
 .shift-right2 {
@@ -168,18 +113,12 @@ select {
     font-size: 20px;
 }
 
-/* 購入ボタンのスタイル */
 #purchase-button {
     width: 100%;
-    /* 希望の幅に調整 */
     padding: 10px;
-    /* 内側の余白を追加 */
     font-size: 20px;
-    /* フォントサイズを調整 */
     margin-top: 60px;
-    /* 上にマージンを追加（必要に応じて） */
     background-color: #ff5555;
-    /* 背景色 */
     color: white;
     font-weight: bold;
 }

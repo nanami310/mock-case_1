@@ -5,47 +5,47 @@
 @section('content')
 <div class="container">
     <div class="flex-container">
-    <div class="left-column">
-        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
-    </div>
-    <div class="right-column">
-        <h1>{{ $product->name }}</h1>
-        <p class="plase">￥{{ number_format($product->price) }}(税込)</p>
+        <div class="left-column">
+            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
+        </div>
+        <div class="right-column">
+            <h1>{{ $product->name }}</h1>
+            <p class="plase">￥{{ number_format($product->price) }}(税込)</p>
 
-        <div class="interaction-container">
-        @if(Auth::check())
-        <div class="like-container">
-            <div class="like-section">
-            @if($likedProducts->contains($product->id))
-                <form action="{{ route('products.unlike', $product->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">
-                        ★ <!-- 星マーク -->
-                    </button>
-                </form>
-            @else
-                <form action="{{ route('products.like', $product->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-primary2">
-                        ☆ <!-- 空の星マーク -->
-                    </button>
-                </form>
-            @endif
-            <div class="like-count"> <!-- いいね数を表示 -->
-                <span>{{ $likeCount }}</span>
-            </div>
+            <div class="interaction-container">
+            @if(Auth::check())
+            <div class="like-container">
+                <div class="like-section">
+                @if($likedProducts->contains($product->id))
+                    <form action="{{ route('products.unlike', $product->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">
+                            ★ 
+                        </button>
+                    </form>
+                @else
+                    <form action="{{ route('products.like', $product->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-primary2">
+                            ☆ 
+                        </button>
+                    </form>
+                @endif
+                <div class="like-count"> 
+                    <span>{{ $likeCount }}</span>
+                </div>
             </div>
         </div>
         @endif
         <div class="comment-container">
-        <div class="comment-section">
-            <div class="bubble-icon">
-                💬 <!-- 吹き出しのマーク -->
+            <div class="comment-section">
+                <div class="bubble-icon">
+                    💬 
+                </div>
+                <div class="comment-count">
+                    {{ $product->comments->count() }}
+                </div>
             </div>
-            <div class="comment-count">
-                {{ $product->comments->count() }} <!-- コメント数を表示 -->
-            </div>
-        </div>
         </div>
         </div>
 
@@ -60,14 +60,14 @@
         <div class="category-box">{{ implode(', ', $categories) }}</div>
         </div>
         <div class="category-container">
-        <p class="card-text">商品の状態</p><p>{{ $product->condition }} <!-- 商品の状態を表示 --></p>
+        <p class="card-text">商品の状態</p><p>{{ $product->condition }} </p>
         </div>
     
         @if($product->is_sold)
             <span class="badge bg-danger">Sold</span>
         @endif
 
-        <h2 class="come2">コメント ({{ $product->comments->count() }})</h2> <!-- コメント数を表示 -->
+        <h2 class="come2">コメント ({{ $product->comments->count() }})</h2> 
         <ul>
     @foreach($product->comments as $comment)
         <li class="comment-item">
@@ -81,7 +81,6 @@
 </ul>
 
         @if (Auth::check())
-        <!-- コメント投稿フォーム -->
         <form action="{{ route('comments.store', $product->id) }}" method="POST">
             @csrf
             <div class="mb-3">

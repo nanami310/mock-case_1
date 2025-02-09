@@ -66,15 +66,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    // タブのクリックイベント
     $('a[data-toggle="tab"]').on('click', function(e) {
-        e.preventDefault(); // デフォルトの動作を防ぐ
+        e.preventDefault(); 
 
-        // アクティブなタブを切り替え
         $('.nav-link').removeClass('active');
         $(this).addClass('active');
 
-        // タブの表示を切り替え
         $('.tab-pane').removeClass('show active');
         $($(this).attr('href')).addClass('show active');
     });

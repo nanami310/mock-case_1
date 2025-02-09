@@ -11,26 +11,18 @@ use App\Http\Controllers\StripeController;
 
 Route::group([], function () {
 
-    // 新規登録画面
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-    // 新規登録処理
     Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
-    // ログイン画面
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    // ログイン処理
     Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-    // ログアウト処理
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // ルートをProductControllerのindexメソッドに変更
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
     Route::get('/?tab=mylist', [ProductController::class, 'index'])->name('products.mylist');
     Route::get('/', [AuthController::class, 'index'])->name('products.index');
     
-    
-    // products.createルートを定義
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::get('/sell', [ProductController::class, 'create'])->name('products.create'); // 出品画面
     Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // 商品登録
@@ -52,16 +44,13 @@ Route::group([], function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
-    // プロフィール編集ページのルート
     Route::get('/mypage/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
-    // プロフィール更新のルート
     Route::post('/mypage', [ProfileController::class, 'update'])->name('updateProfile');
 
-    // マイページのルート
     Route::get('/mypage', [ProfileController::class, 'show'])->name('mypage.show');
 
-   Route::get('/purchase/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
+    Route::get('/purchase/{product}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::post('/address/update/{product}', [AddressController::class, 'update'])->name('address.update');
     Route::get('/purchase/address/{product}', [AddressController::class, 'edit'])->name('address.change');
 

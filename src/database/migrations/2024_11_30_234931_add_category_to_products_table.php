@@ -15,7 +15,7 @@ class AddCategoryToProductsTable extends Migration
      public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->text('category')->after('image'); // 位置を指定
+            $table->text('category')->after('image');
             $table->string('condition')->after('category');
             $table->text('description')->after('name');
             $table->decimal('price', 10, 2)->after('description');
@@ -26,9 +26,9 @@ class AddCategoryToProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('category');
-            $table->dropColumn('condition'); // 追加したカラムを削除
+            $table->dropColumn('condition');
             $table->dropColumn('description');
-            $table->dropColumn('price'); // 追加したカラムを削除
+            $table->dropColumn('price'); 
         });
     }
 }
